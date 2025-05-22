@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = 'https://linkedin.com/in/frank-cairampoma-dev';
             } else if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
                 e.preventDefault();
-                window.location.href = 'https://github.com/frankcairampoma';
+                window.location.href = 'https://github.com/fralch';
             } else if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
                 e.preventDefault();
                 // Aquí iría la URL de X (Twitter) cuando esté disponible
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'https://linkedin.com/in/frank-cairampoma-dev';
                     break;
                 case 'github':
-                    window.location.href = 'https://github.com/frankcairampoma';
+                    window.location.href = 'https://github.com/fralch';
                     break;
                 case 'x':
                     // Aquí iría la URL de X (Twitter) cuando esté disponible

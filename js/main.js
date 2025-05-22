@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.open('https://linkedin.com/in/frank-cairampoma-dev', '_blank');
                 break;
             case 'github':
-                window.open('https://github.com/frankcairampoma', '_blank');
+                window.open('https://github.com/fralch', '_blank');
                 break;
             case 'x':
                 window.open('https://twitter.com/frankcairampoma', '_blank');
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                 case 'g':
                     e.preventDefault();
-                    window.open('https://github.com/frankcairampoma', '_blank');
+                    window.open('https://github.com/fralch', '_blank');
                     break;
             }
         }
