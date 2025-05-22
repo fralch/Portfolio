@@ -1,308 +1,337 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Portfolio of Yiotis Kaltsikis, Front End Developer based in Berlin, Germany">
-    <meta name="keywords" content="HTML5, CSS3, JavaScript, web, design, development, websites, sites, portfolio, frank cairampoma">
-    <title>Full Stack Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaw Talebi - Data Scientist Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic' rel='stylesheet' type='text/css'>
-    <link href="ext/css/bootstrap.min.css" rel="stylesheet">
-    <link href="ext/css/ionicons.min.css" rel="stylesheet">
-    <link href="res/css/styles.css" rel="stylesheet">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
 
-    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: filter 0.3s ease;
+        }
+        
+        .profile-image img:hover {
+            filter: grayscale(100%);
+        }
+
+        .name {
+            color: #4a90e2;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .github-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .github-user {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #f8f9fa;
+            border-color: #4a90e2;
+            color: #4a90e2;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+
+        .footer-note a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .skills {
+            margin-bottom: 30px;
+        }
+
+        .skills-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .education-item::before, .experience-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-size: 18px;
+        }
+
+        .degree, .job-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .institution, .company {
+            color: #666;
+        }
+
+        .date {
+            color: #888;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .job-description {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .publication {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
 </head>
-
-<body data-spy="scroll" data-target="#main-nav">
-
-    <div class="loader-screen">
-        <ul class="loading-bar">
-            <li class="loading-line"></li>
-            <li class="loading-line"></li>
-            <li class="loading-line"></li>
-            <li class="loading-line"></li>
-            <li class="loading-line"></li>
-        </ul>
-    </div>
-
-    <div class="container-fluid">
-
-        <div class="row">
-            <header class="main-header" id="main-header">
-                <nav class="navbar">
-                    <h6><span class="sr-only">Main navigation</span></h6>
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="nav-toggle-btn collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="ion-navicon nav-open"></span>
-                                <span class="ion-android-close nav-close"></span>
-                            </button>
-                            <a class="navbar-brand nav-link logo" href="#main-header">
-                                <img class="logo-img logo-white" src="res/img/logo_white.png" alt="Yiotis logo white" />
-                                <img class="logo-img logo-dark" src="res/img/logo_dark.png" alt="Yiotis logo black" />
-                                Fralch
-                            </a>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="main-nav">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#about-me" class="nav-link">Sobre mi</a></li>
-                                <li><a href="#tools" class="nav-link">Tecnologias</a></li>
-                                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                                <li><a href="#contact" class="nav-link">Contactame</a></li>
-                                <li><a href="ingles.html" class="nav-link">English</a></li>
-                               
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <div class="overlay"></div>
-                <div class="welcome-box">
-                    <p>Bienvenido a mi portfolio, Soy  Frank un full-stack</p>
-                    <h1>Web developer</h1>
-                </div>
-                <nav class="social-nav">
-                    <h6><span class="sr-only">Social navigation</span></h6>
-                    <ul class="nav invisible">
-                        <li><a class="social-btn social-fb" href="https://www.facebook.com/frankcairampoma" target="_blank"><span class="ion-social-facebook"></span></a></li>
-                        <li><a class="social-btn social-linkedin" href="https://www.linkedin.com/in/frank-cairampoma-78454895" target="_blank"><span class="ion-social-linkedin"></span></a></li>
-                        <li><a class="social-btn social-github" href="https://github.com/fralch/" target="_blank"><span class="ion-social-github"></span></a></li>
-                        <li><a class="social-btn social-instagram" href="https://www.instagram.com/fralch/"><span class="ion-social-instagram"></span></a></li>
-                        <li><a class="social-btn social-email" href="mailto:ingfralch@gmail.com"><span class="ion-ios-email"></span></a></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
-
-        <!-- About me -->
-        <div class="row">
-            <section class="container about-me" id="about-me">
-
-                <div class="row">
-                    <h2>Sobre mi</h2>
-                </div>
-
-                <div class="row visible-xs visible-sm">
-                    <div class="col-sm-12 bg-me">
-                    </div>
-                </div>
-
-                <div class="row feats-row">
-                    <div class="col-md-6 feats-container">
-                        <section>
-                            <h3><span class="ion-ios-glasses-outline icon-header"></span>Quien soy </h3>
-                            <p>Hola, mi nombre es A. Frank Cairampoma. Soy un desarrollador web en Peru. 
-                                Desde la edad de 21 años, he profundizado en numerosos lenguajes de programación, 
-                                lo cual me llevo a estudiar Ingenieria Informatica. Mi interés en diseñar y desarrollar 
-                                interfaces de usuario atractivas es lo que me hizo  especializarme en Desarrollo de Web, 
-                                para conocer más sobre si experiencia laboral te invito a visitar  <a href="https://www.linkedin.com/in/frank-cairampoma-78454895/"> mi Linkedin</a> .
-                            </p>
-                        </section>
-                    </div>
-                    <div class="col-md-6 feat-bg bg-me hidden-xs hidden-sm invisible"></div>
-                </div>
-
-                <div class="row feats-row">
-                    <div class="col-md-6 feat-bg bg-whatido hidden-xs hidden-sm invisible">
-                    </div>
-                    <div class="col-md-6 feats-container">
-                        <section>
-                            <h3><span class="ion-ios-color-wand-outline icon-header"></span>Que hago</h3>
-                            <p>Ofrezco soluciones web, haciendo uso de tecnologías de vanguardia. 
-                                Me gusta el diseño responsive, la mejora progresiva y las aplicaciones de una sola página. 
-                                Encuentro fascinante el proceso de configuración de una identidad en línea a través de la interacción con el usuario. </p>
-                        </section>
-                    </div>
-                </div>
-
-                <div class="row feats-row">
-                    <div class="col-md-6 feats-container">
-                        <section>
-                            <h3><span class="ion-ios-list-outline icon-header"></span>Mas informacion</h3>
-                            <ul class="list-unstyled">
-                                <li><span class="color-main">Codifico en :</span> HTML, CSS y JS tambien trabaje con  Node.JS, C/C++, C#, Java  y Android nativo.</li>
-                                <li><span class="color-main">Educacion:</span> Bachiller en Ingenieria de Informatica de la Univerdad Continental</li> 
-                                <li><span class="color-main">Hobbies:</span> Fotografo amateur, amante de esculpir en arcilla, gamer, geek y dog lover.</li>
-                                <li><span class="color-main">Idiomas:</span> Hablo Español, Ingles y Portugues</li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-md-6 feat-bg bg-facts hidden-xs hidden-sm invisible"></div>
-                </div>
-
-            </section>
-        </div>
-
-        <!-- Tools -->
-        <section class="row dark-container tools-row" style="background-color: #0D1117">
-            <div class="container tools" id="tools">
-                <div class="row">
-                    <h2>Tecnologias que uso </h2>
-                </div>
-                <div class="row" >
-                    <img id="angular-logo" src="res/img/all.jpg" width="100%" >
-                    
-                </div>
-            </div>
-        </section>
-        <br>
-        <section class="row dark-container tools-row" style="background-color: #fff; ">
-            <div class="container tools" id="github">
-                <div class="row">
-                    <h3 style="color: black"> GitHub Contribuciones  </h3>
-                </div>
-                <div class="row"  >
-                    <img src="https://grass-graph.appspot.com/images/fralch.png" width="80%" style="margin-left: 10%;">
-                    
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio -->
-        <div class="portfolio-row row">
-            <section class="container portfolio" id="portfolio">
-                <div class="row">
-                    <h2  style="font-size: 2em; ">Empresas donde trabaje</h2>
-                </div>
-
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-image"><img src="img/me3.jpg" alt="Shaw Talebi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+                <h1 class="name">Frank Cairampoma</h1>
+                <p class="subtitle">Example data science portfolio</p>
+                <a href="#" class="github-link">View the Project on GitHub</a>
+                <p class="github-user">ShawhinT/example-portfolio</p>
                 
-
-                <div class="row">
-                    <div class="showcase-container clearfix" id="showcase-container">
-
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1, 2">
-                            <img class="img-responsive showcase-img" src="res/img/credipyme.jpg" alt="Filterizr plugin">
-                            <div class="item-desc">
-                                <h4>Credipyme</h4>
-                                <p>Sistema de gestión Crediticia</p>
-                                <a class="button " href="http://corporacioncredipyme.com/" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1, 2">
-                            <img class="img-responsive showcase-img" src="res/img/cajacentro.jpg" alt="Filterizr plugin">
-                            <div class="item-desc">
-                                <h4>Caja Centro</h4>
-                                <p>Sistema de gestión Crediticia</p>
-                                <a class="button " href="https://www.cajacentro.com.pe/" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1, 2">
-                            <img class="img-responsive showcase-img" src="res/img/zgroup.jpg" alt="Filterizr plugin">
-                            <div class="item-desc">
-                                <h4>Zgroup</h4>
-                                <p>Sistema de gestión de Contenedores</p>
-                                <a class="button " href="https://www.zgroup.com.pe/es" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1, 2">
-                            <img class="img-responsive showcase-img" src="res/img/tecsup.png" alt="Filterizr plugin">
-                            <div class="item-desc">
-                                <h4>TECSUP</h4>
-                                <p>Docente del curso de BACKEND</p>
-                                <a class="button " href="https://www.tecsup.edu.pe/" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1, 2">
-                            <img class="img-responsive showcase-img" src="res/img/showcase_filterizr.jpg" alt="Filterizr plugin">
-                            <div class="item-desc">
-                                <h4>WareHouse</h4>
-                                <p>Web de venta de equipos de computo</p>
-                                <a class="button " href="http://www.warehousepc.com.pe/" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1">
-                            <img class="img-responsive showcase-img" src="res/img/showcase_photocraft.jpg" alt="Photocraft theme">
-                            <div class="item-desc">
-                                <h4>Colegio de Contadores </h4>
-                                <p>Sistema de Gestion ERP</p>
-                                <a class="button" href="http://www.ccpjunin.pe/" target="_blank">Visit</a>
-                                
-                            </div>
-                        </section>
-
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1">
-                            <img class="img-responsive showcase-img" src="res/img/showcase_xtremetravels.jpg" alt="XtremeTravels website">
-                            <div class="item-desc">
-                                <h4>Trilce</h4>
-                                <p>Web Colegios Trilce Peru</p>
-                                <a class="button" href="https://www.trilce.edu.pe/colegio" target="_blank">Visit</a>
-                            </div>
-                        </section>
-
-                        <section class="col-sm-6 filtr-item showcase-item" data-category="1">
-                            <img class="img-responsive showcase-img" src="res/img/showcase_akustix.jpg" alt="Akustix website">
-                            <div class="item-desc">
-                                <h4>Zombie</h4>
-                                <p>Web de e-commerce</p>
-                                <a class="button " href="https://www.zombie.pe/" target="_blank">Visit</a>
-                               
-                            </div>
-                        </section>
-                    </div>
+                <div class="download-buttons">
+                    <a href="#" class="btn">Download ZIP File</a>
+                    <a href="#" class="btn">Download TAR Ball</a>
+                    <a href="#" class="btn">View On GitHub</a>
                 </div>
-
-
-            </section>
+            </div>
+            
+            <div class="footer-note">
+                This project is maintained by <a href="#">ShawhinT</a><br><br>
+                Hosted on GitHub Pages — Theme by <a href="#">orderedlist</a>
+            </div>
         </div>
 
-        <!-- Contact -->
-        <div class="row contact-row dark-container">
-            <section class="container contact" id="contact">
-                <div class="row">
-                    <h2>Contactame</h2>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="title-section">
+                <h1 style="font-size: 32px; margin-bottom: 10px;">Data Scientist</h1>
+                <div class="skills">
+                    <p class="skills-text"><strong>Technical Skills:</strong> Python, SQL, AWS, Snowflake, MATLAB</p>
                 </div>
-                <div class="row">
-                    <ul >
-                        <li style="list-style:none; ">Email: Ingfralch@gmail.com</li>
-                        <li style="list-style:none;">Celular: +51 961610362</li>
+            </div>
+
+            <!-- Education Section -->
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <div class="degree">Ph.D., Physics</div>
+                    <div class="institution">The University of Texas at Dallas <span class="date">(May 2022)</span></div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="degree">M.S., Physics</div>
+                    <div class="institution">The University of Texas at Dallas <span class="date">(December 2019)</span></div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="degree">B.S., Physics</div>
+                    <div class="institution">The University of Texas at Dallas <span class="date">(May 2017)</span></div>
+                </div>
+            </div>
+
+            <!-- Work Experience Section -->
+            <div class="section">
+                <h2 class="section-title">Work Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">Data Scientist @ Toyota Financial Services <span class="date">(June 2022 - Present)</span></div>
+                    <ul class="job-description">
+                        <li>Uncovered and corrected missing step in production data pipeline which impacted over 70% of active accounts</li>
+                        <li>Redeveloped loan originations model which resulted in 50% improvement in model performance and saving 1 million dollars in potential losses</li>
                     </ul>
-                    </form>
                 </div>
-            </section>
-        </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Data Science Consultant @ Shawhin Talebi Ventures LLC <span class="date">(December 2020 - Present)</span></div>
+                    <ul class="job-description">
+                        <li>Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios</li>
+                        <li>Applied unsupervised deep learning approaches to longitudinal ICU data to discover novel sepsis sub-phenotypes</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- Footer -->
-        <div class="row dark-container">
-            <footer class="footer-main">
-                <p></p>
-            </footer>
+            <!-- Projects Section -->
+            <div class="section">
+                <h2 class="section-title">Projects</h2>
+                
+                <div class="project-title">Data-Driven EEG Band Discovery with Decision Trees</div>
+                <a href="#" class="publication">Publication</a>
+                
+                <p class="project-description">
+                    Developed objective strategy for discovering optimal EEG bands based on signal power spectra using <span class="highlight">Python</span>. This data-driven approach led to better characterization of the underlying power spectrum by identifying bands
+                </p>
+            </div>
         </div>
-
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMDGF64FSP"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
-    <script src="ext/js/jquery.filterizr.min.js"></script>
-    <script src="ext/js/particles.min.js"></script>
-    <script src="res/js/typewriter.js"></script>
-    <script src="res/js/app.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-BMDGF64FSP');
-        let year = new Date().getFullYear();
-      $( document ).ready(function() {
-           $('footer p').prepend("Frank Cairampoma"+ " - " + year);
-        });
-    </script>
-
 </body>
 </html>
