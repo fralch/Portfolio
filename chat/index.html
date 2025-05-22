@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #212121;
+            color: #ECECF1;
+            line-height: 1.5;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: #171717;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #565869;
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            border-bottom: 1px solid #565869;
+        }
+
+        .new-chat-btn {
+            width: 100%;
+            background-color: #303030;
+            border: 1px solid #565869;
+            color: #ECECF1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .new-chat-btn:hover {
+            background-color: #565869;
+        }
+
+        .chat-history {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #C5C5D2;
+            transition: background-color 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background-color: #303030;
+        }
+
+        .sidebar-footer {
+            padding: 1rem;
+            border-top: 1px solid #565869;
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            color: #C5C5D2;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-menu-item:hover {
+            background-color: #303030;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+        }
+
+        .section-card {
+            background-color: #212121;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .section-icon {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .example-list, .feature-list {
+            list-style: none;
+            text-align: left;
+            width: 100%;
+        }
+
+        .example-list li, .feature-list li {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background-color: #303030;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .example-list li:hover {
+            background-color: #565869;
+        }
+
+        .feature-list li {
+            cursor: default;
+        }
+
+        /* Input Area */
+        .input-area {
+            position: sticky;
+            bottom: 0;
+            background-color: #212121;
+            padding: 1rem 2rem 2rem 2rem;
+            border-top: 1px solid #565869;
+            width: 100%;
+        }
+
+        .input-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .input-wrapper {
+            background-color: #303030;
+            border-radius: 0.75rem;
+            border: 1px solid #565869;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.75rem 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #64b5f6;
+        }
+
+        .message-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ECECF1;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            min-height: 1.5rem;
+            max-height: 12rem;
+            line-height: 1.5;
+            font-family: inherit;
+        }
+
+        .message-input::placeholder {
+            color: #8E8EA0;
+        }
+
+        .send-button {
+            background-color: #10A37F;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-button:disabled {
+            background-color: #565869;
+            cursor: not-allowed;
+        }
+
+        .send-button:not(:disabled):hover {
+            background-color: #0D8B6C;
+        }
+
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #C5C5D2;
+            text-align: center;
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -260px;
+                z-index: 1000;
+                height: 100vh;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .sections-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .input-area {
+                padding: 1rem;
+            }
+        }
+
+        /* Menu toggle for mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background-color: #303030;
+            border: 1px solid #565869;
+            color: #ECECF1;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="new-chat-btn" onclick="newChat()">
+                <span>+</span>
+                New chat
+            </button>
+        </div>
+
+        <div class="chat-history">
+            <div class="chat-item">Previous conversation 1</div>
+            <div class="chat-item">Previous conversation 2</div>
+            <div class="chat-item">Previous conversation 3</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-menu-item">
+                <span>🌙</span>
+                <span>Dark mode</span>
+            </div>
+            <div class="sidebar-menu-item">
+                <span>💬</span>
+                <span>OpenAI Discord</span>
+            </div>
+            <div class="sidebar-menu-item">
+                <span>📋</span>
+                <span>Updates & FAQ</span>
+            </div>
+            <div class="sidebar-menu-item">
+                <span>👤</span>
+                <span>Log out</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>ChatGPT</h1>
+            </header>
+            
+            <main class="sections-grid">
+                <section class="section-card examples">
+                    <div class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                        </svg>
+                    </div>
+                    <h2>Examples</h2>
+                    <ul class="example-list">
+                        <li onclick="fillInput(this)">"Explain quantum computing in simple terms" →</li>
+                        <li onclick="fillInput(this)">"Got any creative ideas for a 10 year old's birthday?" →</li>
+                        <li onclick="fillInput(this)">"How do I make an HTTP request in JavaScript?" →</li>
+                    </ul>
+                </section>
+
+                <section class="section-card capabilities">
+                    <div class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <h2>Capabilities</h2>
+                    <ul class="feature-list">
+                        <li>Remembers what user said earlier in the conversation</li>
+                        <li>Allows user to provide follow-up corrections</li>
+                        <li>Trained to decline inappropriate requests</li>
+                    </ul>
+                </section>
+
+                <section class="section-card limitations">
+                    <div class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <h2>Limitations</h2>
+                    <ul class="feature-list">
+                        <li>May occasionally generate incorrect information</li>
+                        <li>May occasionally produce harmful instructions or biased content</li>
+                        <li>Limited knowledge of world and events after 2021</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        class="message-input" 
+                        placeholder="Send a message..."
+                        rows="1"
+                        id="messageInput"
+                        onkeydown="handleKeyPress(event)"
+                        oninput="adjustTextareaHeight(this)"
+                    ></textarea>
+                    <button class="send-button" id="sendButton" onclick="sendMessage()" disabled>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="disclaimer">
+                    Free Research Preview. ChatGPT is optimized for dialogue. Our goal is to make AI systems more natural to interact with, and your feedback will help us improve our systems and make them safer.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-resize textarea
+        function adjustTextareaHeight(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+            
+            // Enable/disable send button based on content
+            const sendButton = document.getElementById('sendButton');
+            sendButton.disabled = !textarea.value.trim();
+        }
+
+        // Handle Enter key press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Send message function
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                console.log('Mensaje enviado:', message);
+                input.value = '';
+                input.style.height = 'auto';
+                document.getElementById('sendButton').disabled = true;
+                // Aquí iría la lógica para enviar el mensaje al servidor
+            }
+        }
+
+        // Fill input with example text
+        function fillInput(element) {
+            const text = element.textContent.replace(' →', '').replace(/"/g, '');
+            const input = document.getElementById('messageInput');
+            input.value = text;
+            adjustTextareaHeight(input);
+            input.focus();
+        }
+
+        // New chat function
+        function newChat() {
+            const input = document.getElementById('messageInput');
+            input.value = '';
+            input.style.height = 'auto';
+            document.getElementById('sendButton').disabled = true;
+            console.log('Nuevo chat iniciado');
+        }
+
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
