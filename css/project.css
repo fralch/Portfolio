@@ -157,3 +157,57 @@
     font-size: 12px;
     border: 1px solid rgba(100, 181, 246, 0.3);
 }
+
+/* Variables para tema claro */
+[data-theme="light"] .project-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .modal-content {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+}
+
+[data-theme="light"] .modal-project-title {
+    color: #333333;
+}
+
+[data-theme="light"] .modal-project-description {
+    color: #666666;
+}
+
+[data-theme="light"] .modal-project-details li {
+    color: #555555;
+}
+
+[data-theme="light"] .modal-project-details li:before {
+    color: #64b5f6;
+}
+
+[data-theme="light"] .modal-project-stat {
+    background: var(--accent-color, #64b5f6);
+    color: #ffffff;  /* Cambiado a blanco para mejor contraste en modo claro */
+}
+
+[data-theme="light"] .modal-tech-tag {
+    background: rgba(100, 181, 246, 0.1);
+    color: #1976d2;
+    border-color: rgba(100, 181, 246, 0.3);
+}
+
+[data-theme="light"] .modal-close {
+    color: #666666;
+}
+
+[data-theme="light"] .modal-close:hover {
+    color: #333333;
+}
+
+[data-theme="light"] .modal-project-link {
+    background: #64b5f6;
+    color: #ffffff;
+}
+
+[data-theme="light"] .modal-project-link:hover {
+    background: #1976d2;
+}
