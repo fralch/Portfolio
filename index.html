@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaw Talebi - Data Scientist Portfolio</title>
     <style>
+        :root {
+            /* Variables para el tema claro (predeterminado) */
+            --background-color: white;
+            --text-color: #333;
+            --text-color-secondary: #666;
+            --text-color-tertiary: #888;
+            --accent-color: #4a90e2;
+            --border-color: #ddd;
+            --hover-background: #f8f9fa;
+            --section-border: #f0f0f0;
+            --card-background: white;
+        }
+        
+        [data-theme="dark"] {
+            /* Variables para el tema oscuro */
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --text-color-secondary: #b0b0b0;
+            --text-color-tertiary: #909090;
+            --accent-color: #64b5f6;
+            --border-color: #444;
+            --hover-background: #2a2a2a;
+            --section-border: #333;
+            --card-background: #121212;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +40,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: white;
+            color: var(--text-color);
+            background: var(--background-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -29,12 +56,36 @@
 
         /* Left Sidebar */
         .sidebar {
-            background: white;
+            background: var(--card-background);
             padding: 30px;
             border-radius: 12px;
             height: fit-content;
             position: sticky;
             top: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.05);
         }
 
         .profile-section {
@@ -70,36 +121,41 @@
         }
 
         .name {
-            color: #4a90e2;
+            color: var(--accent-color);
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
         }
 
         .title {
             font-size: 18px;
-            color: #666;
+            color: var(--text-color-secondary);
             margin-bottom: 15px;
+            transition: color 0.3s ease;
         }
 
         .subtitle {
-            color: #888;
+            color: var(--text-color-tertiary);
             font-size: 14px;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
         .github-link {
-            color: #4a90e2;
+            color: var(--accent-color);
             text-decoration: none;
             font-size: 14px;
             margin-bottom: 5px;
             display: block;
+            transition: color 0.3s ease;
         }
 
         .github-user {
-            color: #888;
+            color: var(--text-color-tertiary);
             font-size: 12px;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
         .download-buttons {
@@ -110,9 +166,9 @@
 
         .btn {
             padding: 10px 20px;
-            border: 1px solid #ddd;
-            background: white;
-            color: #666;
+            border: 1px solid var(--border-color);
+            background: var(--card-background);
+            color: var(--text-color-secondary);
             text-decoration: none;
             border-radius: 6px;
             font-size: 14px;
@@ -121,28 +177,31 @@
         }
 
         .btn:hover {
-            background: #f8f9fa;
-            border-color: #4a90e2;
-            color: #4a90e2;
+            background: var(--hover-background);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
         }
 
         .footer-note {
             margin-top: 30px;
             font-size: 12px;
-            color: #888;
+            color: var(--text-color-tertiary);
             text-align: center;
+            transition: color 0.3s ease;
         }
 
         .footer-note a {
-            color: #4a90e2;
+            color: var(--accent-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         /* Main Content */
         .main-content {
-            background: white;
+            background: var(--card-background);
             padding: 30px;
             border-radius: 12px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .skills {
@@ -150,8 +209,9 @@
         }
 
         .skills-text {
-            color: #666;
+            color: var(--text-color-secondary);
             font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         .section {
@@ -161,10 +221,11 @@
         .section-title {
             font-size: 24px;
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid var(--section-border);
             padding-bottom: 10px;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .education-item, .experience-item {
@@ -177,24 +238,28 @@
             content: '•';
             position: absolute;
             left: 0;
-            color: #4a90e2;
+            color: var(--accent-color);
             font-size: 18px;
+            transition: color 0.3s ease;
         }
 
         .degree, .job-title {
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 5px;
+            transition: color 0.3s ease;
         }
 
         .institution, .company {
-            color: #666;
+            color: var(--text-color-secondary);
+            transition: color 0.3s ease;
         }
 
         .date {
-            color: #888;
+            color: var(--text-color-tertiary);
             font-style: italic;
             font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         .job-description {
@@ -204,33 +269,38 @@
 
         .job-description li {
             margin-bottom: 8px;
-            color: #666;
+            color: var(--text-color-secondary);
             font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         .project-title {
             font-size: 20px;
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .publication {
-            color: #4a90e2;
+            color: var(--accent-color);
             text-decoration: none;
             font-size: 14px;
             margin-bottom: 15px;
             display: block;
+            transition: color 0.3s ease;
         }
 
         .project-description {
-            color: #666;
+            color: var(--text-color-secondary);
             line-height: 1.6;
+            transition: color 0.3s ease;
         }
 
         .highlight {
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
+            transition: color 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -333,5 +403,88 @@
             </div>
         </div>
     </div>
+    
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" id="moon-icon" style="display:none;"></path>
+            <circle cx="12" cy="12" r="5" id="sun-icon"></circle>
+            <line x1="12" y1="1" x2="12" y2="3" id="sun-icon-ray1"></line>
+            <line x1="12" y1="21" x2="12" y2="23" id="sun-icon-ray2"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" id="sun-icon-ray3"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" id="sun-icon-ray4"></line>
+            <line x1="1" y1="12" x2="3" y2="12" id="sun-icon-ray5"></line>
+            <line x1="21" y1="12" x2="23" y2="12" id="sun-icon-ray6"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" id="sun-icon-ray7"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" id="sun-icon-ray8"></line>
+        </svg>
+    </button>
+    
+    <script>
+        // Función para cambiar el tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIconElements = [
+                document.getElementById('sun-icon'),
+                document.getElementById('sun-icon-ray1'),
+                document.getElementById('sun-icon-ray2'),
+                document.getElementById('sun-icon-ray3'),
+                document.getElementById('sun-icon-ray4'),
+                document.getElementById('sun-icon-ray5'),
+                document.getElementById('sun-icon-ray6'),
+                document.getElementById('sun-icon-ray7'),
+                document.getElementById('sun-icon-ray8')
+            ];
+            
+            if (html.getAttribute('data-theme') === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                moonIcon.style.display = 'block';
+                sunIconElements.forEach(el => {
+                    if (el) el.style.display = 'none';
+                });
+            } else {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                moonIcon.style.display = 'none';
+                sunIconElements.forEach(el => {
+                    if (el) el.style.display = 'block';
+                });
+            }
+        }
+        
+        // Evento para el botón de cambio de tema
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        
+        // Cargar el tema guardado al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIconElements = [
+                document.getElementById('sun-icon'),
+                document.getElementById('sun-icon-ray1'),
+                document.getElementById('sun-icon-ray2'),
+                document.getElementById('sun-icon-ray3'),
+                document.getElementById('sun-icon-ray4'),
+                document.getElementById('sun-icon-ray5'),
+                document.getElementById('sun-icon-ray6'),
+                document.getElementById('sun-icon-ray7'),
+                document.getElementById('sun-icon-ray8')
+            ];
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                moonIcon.style.display = 'block';
+                sunIconElements.forEach(el => {
+                    if (el) el.style.display = 'none';
+                });
+            } else {
+                moonIcon.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
