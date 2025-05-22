@@ -6,6 +6,7 @@
     <title>A.Frank - Portfolio</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/command-palette.css">
+    <link rel="stylesheet" href="css/project.css">
     <script src="js/command-palette.js"></script>
 </head>
 <body>
@@ -250,7 +251,7 @@
                     
                     <!-- Villding Multi-Platform -->
                     <div class="project-card">
-                        <a href="https://expo.dev/artifacts/eas/cQo6xn58rXNU7ygnQtnaeh.apk" class="project-title">Villding Multi-Platform •</a>
+                        <a href="https://expo.dev/artifacts/eas/cQo6xn58rXNU7ygnQtnaeh.apk" class="project-title">Villding Multi-Platform</a>
                         <p class="project-description">
                             App híbrida con funcionalidades offline, manejo de archivos multimedia y notificaciones push en tiempo real
                         </p>
@@ -294,7 +295,7 @@
                     
                     <!-- Container GPS Tracker -->
                     <div class="project-card">
-                        <a href="https://containertracker.frankcairampoma.dev" class="project-title">ContainerTracker GPS •</a>
+                        <a href="https://containertracker.frankcairampoma.dev" class="project-title">ContainerTracker GPS</a>
                         <p class="project-description">
                             Sistema de geolocalización en tiempo real para contenedores refrigerados con alertas y monitoreo 24/7
                         </p>
@@ -408,6 +409,36 @@
             </div>
         </div>
     </dialog>
+    
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" style="margin: 0; color: var(--text-primary, #fff);">Detalles del Proyecto</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <a id="modalProjectTitle" class="modal-project-title" href="#" target="_blank"></a>
+                <p id="modalProjectDescription" class="modal-project-description"></p>
+                
+                <div class="modal-project-details">
+                    <h4>Características principales:</h4>
+                    <ul id="modalProjectFeatures"></ul>
+                </div>
+    
+                <div class="modal-tech-stack">
+                    <h4>Stack tecnológico:</h4>
+                    <div id="modalTechTags" class="modal-tech-tags"></div>
+                </div>
+    
+                <div id="modalProjectStats" class="modal-project-stats"></div>
+                
+                <div id="modalProjectLinks" class="modal-project-links"></div>
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
+    <script src="js/project.js"></script>
+  
+        
 </body>
 </html>
