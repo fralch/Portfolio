@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -246,6 +246,74 @@
             font-size: 14px;
             transition: color 0.3s ease;
         }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            background: var(--hover-background);
+            color: var(--text-color-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .skill-tag svg {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover svg {
+            stroke: var(--accent-color);
+            fill: var(--accent-color);
+        }
+        
+        .skills-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .skill-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .skill-icon svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-icon:hover svg {
+            transform: scale(1.2);
+        }
+        
+        .skill-name {
+            font-size: 12px;
+            color: var(--text-color-secondary);
+            text-align: center;
+        }
 
         .section {
             margin-bottom: 40px;
@@ -307,27 +375,100 @@
             transition: color 0.3s ease;
         }
 
+        /* Proyectos Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .project-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
         .project-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text-color);
             margin-bottom: 10px;
             transition: color 0.3s ease;
         }
-
-        .publication {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 15px;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
+        
         .project-description {
             color: var(--text-color-secondary);
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
             transition: color 0.3s ease;
+        }
+        
+        .project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .project-stat {
+            background: var(--hover-background);
+            color: var(--text-color-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+        
+        .project-tag {
+            font-size: 12px;
+            color: var(--text-color-secondary);
+            transition: color 0.3s ease;
+        }
+        
+        .github-icon {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 5px;
+        }
+        
+        .github-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-color-secondary);
+            transition: stroke 0.3s ease;
+        }
+        
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .highlight {
@@ -398,76 +539,191 @@
                 <div class="download-buttons">
                     <a href="files/FrankCairampoma_Resume.pdf" class="btn">Download Resume PDF</a>
                     <a href="https://github.com/frankcairampoma" class="btn">View GitHub Profile</a>
+                    <a href="https://github.com/frankcairampoma" class="btn">ChatGPT - Ask Me Anything</a>
                 </div>
             </div>
             
             <div class="footer-note">
-                This project is maintained by <a href="#">ShawhinT</a><br><br>
-                Hosted on GitHub Pages — Theme by <a href="#">orderedlist</a>
+                Pulsa  <a href="#">Cmd + K </a> para abrir la paleta de comandos.<br><br>
+                Hosted on GitHub Pages — by <a href="https://github.com/fralch">Fralch</a>
             </div>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
             <div class="title-section">
-                <h1 style="font-size: 32px; margin-bottom: 10px;">Data Scientist</h1>
+                <h1 style="font-size: 32px; ">Full Stack Developer</h1>
+                    <p style="font-size: 18px; color: #64b5f6; margin-bottom: 10px;">Mobile Developer</p>
                 <div class="skills">
-                    <p class="skills-text"><strong>Technical Skills:</strong> Python, SQL, AWS, Snowflake, MATLAB</p>
+                    <p class="skills-text"><strong>Habilidades:</strong></p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node</span>
+                        <span class="skill-tag">Tailwind</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">Nest.Js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Vue</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>     
                 </div>
             </div>
 
-            <!-- Education Section -->
-            <div class="section">
-                <h2 class="section-title">Education</h2>
-                
-                <div class="education-item">
-                    <div class="degree">Ph.D., Physics</div>
-                    <div class="institution">The University of Texas at Dallas <span class="date">(May 2022)</span></div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="degree">M.S., Physics</div>
-                    <div class="institution">The University of Texas at Dallas <span class="date">(December 2019)</span></div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="degree">B.S., Physics</div>
-                    <div class="institution">The University of Texas at Dallas <span class="date">(May 2017)</span></div>
-                </div>
-            </div>
+            
 
             <!-- Work Experience Section -->
             <div class="section">
-                <h2 class="section-title">Work Experience</h2>
+                <h2 class="section-title">Experiencia laboral</h2>
                 
                 <div class="experience-item">
-                    <div class="job-title">Data Scientist @ Toyota Financial Services <span class="date">(June 2022 - Present)</span></div>
+                    <div class="job-title">Senior Full Stack Developer @ TechSolutions Inc. <span class="date">(January 2022 - Present)</span></div>
                     <ul class="job-description">
-                        <li>Uncovered and corrected missing step in production data pipeline which impacted over 70% of active accounts</li>
-                        <li>Redeveloped loan originations model which resulted in 50% improvement in model performance and saving 1 million dollars in potential losses</li>
+                        <li>Led development of e-commerce platform serving 50K+ users, built with React, Node.js, and PostgreSQL</li>
+                        <li>Implemented microservices architecture reducing system downtime by 85% and improving response time by 40%</li>
+                        <li>Mentored team of 4 junior developers and established code review processes improving code quality by 60%</li>
                     </ul>
                 </div>
                 
                 <div class="experience-item">
-                    <div class="job-title">Data Science Consultant @ Shawhin Talebi Ventures LLC <span class="date">(December 2020 - Present)</span></div>
+                    <div class="job-title">Full Stack Developer @ StartupLab <span class="date">(March 2020 - December 2021)</span></div>
                     <ul class="job-description">
-                        <li>Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios</li>
-                        <li>Applied unsupervised deep learning approaches to longitudinal ICU data to discover novel sepsis sub-phenotypes</li>
+                        <li>Developed and deployed 3 mobile applications using React Native, achieving 4.8+ star ratings on app stores</li>
+                        <li>Built REST APIs handling 10M+ requests monthly using Express.js and MongoDB with 99.9% uptime</li>
+                        <li>Integrated third-party payment systems (Stripe, PayPal) processing $2M+ in transactions</li>
                     </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Junior Full Stack Developer @ WebCorp <span class="date">(June 2019 - February 2020)</span></div>
+                    <ul class="job-description">
+                        <li>Collaborated in development of CRM system using Vue.js frontend and Django backend</li>
+                        <li>Automated deployment processes using Docker and Jenkins, reducing deployment time by 70%</li>
+                        <li>Implemented responsive web designs supporting mobile, tablet and desktop platforms</li>
+                    </ul>
+                </div>
+            </div>
+                <!-- Education Section -->
+            <div class="section">
+                <h2 class="section-title">Educación</h2>       
+                <div class="education-item">
+                    <div class="degree">Ingenieria de Sistemas</div>
+                    <div class="institution">Universidad Continental de Perú <span class="date">(Oct 2016)</span></div>
+                </div>              
+            </div>
+            <!-- Projects Section -->
+            <div class="section">
+                <h2 class="section-title">Proyectos</h2>
+                
+                <div class="projects-grid">
+                    <!-- mars.codes -->
+                    <div class="project-card">
+                        <div class="project-title">mars.codes •</div>
+                        <p class="project-description">
+                            Historia interactiva con retos de programación para viajar a Marte
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">Elige tu propia aventura</div>
+                            <div class="project-stat">En desarrollo</div>
+                        </div>
+                    </div>
+                    
+                    <!-- AdventJS -->
+                    <div class="project-card">
+                        <div class="project-title">AdventJS •</div>
+                        <p class="project-description">
+                            Retos de programación en JavaScript para cada día de diciembre hasta Navidad
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">+1 millón de visitas</div>
+                            <div class="project-stat">Multiidioma</div>
+                            <div class="project-stat">JavaScript & TypeScript</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Codember -->
+                    <div class="project-card">
+                        <div class="project-title">Codember •</div>
+                        <p class="project-description">
+                            Juego interactivo de programación con retos y secretos
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">+2000 usuarios activos</div>
+                            <div class="project-stat">Retos para cualquier lenguaje</div>
+                        </div>
+                    </div>
+                    
+                    <!-- codi.link -->
+                    <div class="project-card">
+                        <div class="project-title">codi.link</div>
+                        <p class="project-description">
+                            Playground de código HTML, CSS y JavaScript para compartir
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">100k visitas al mes</div>
+                            <div class="project-stat">Desarrollado por la comunidad</div>
+                        </div>
+                        <div class="project-tags">
+                            <a href="https://github.com/frankcairampoma" class="project-tag">
+                                <span class="github-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pruebas Técnicas -->
+                    <div class="project-card">
+                        <div class="project-title">Pruebas Técnicas •</div>
+                        <p class="project-description">
+                            Lista de pruebas técnicas de empresas para practicar programación
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">100% gratuito</div>
+                            <div class="project-stat">+500 soluciones de la comunidad</div>
+                        </div>
+                        <div class="project-tags">
+                            <a href="https://github.com/frankcairampoma" class="project-tag">
+                                <span class="github-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- miduConf -->
+                    <div class="project-card">
+                        <div class="project-title">miduConf</div>
+                        <p class="project-description">
+                            Conferencia de programación en streaming para la comunidad hispanohablante con charlas top
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">+15k tickets repartidos</div>
+                            <div class="project-stat">+50k espectadores en directo</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Projects Section -->
-            <div class="section">
-                <h2 class="section-title">Projects</h2>
-                
-                <div class="project-title">Data-Driven EEG Band Discovery with Decision Trees</div>
-                <a href="#" class="publication">Publication</a>
-                
-                <p class="project-description">
-                    Developed objective strategy for discovering optimal EEG bands based on signal power spectra using <span class="highlight">Python</span>. This data-driven approach led to better characterization of the underlying power spectrum by identifying bands
-                </p>
-            </div>
+        
         </div>
     </div>
     
@@ -527,7 +783,7 @@
         
         // Cargar el tema guardado al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // Usar 'dark' como valor predeterminado
             const html = document.documentElement;
             const moonIcon = document.getElementById('moon-icon');
             const sunIconElements = [
@@ -542,14 +798,18 @@
                 document.getElementById('sun-icon-ray8')
             ];
             
+            // Establecer el tema (siempre actualizar los atributos y estilos)
+            html.setAttribute('data-theme', savedTheme);
             if (savedTheme === 'dark') {
-                html.setAttribute('data-theme', 'dark');
                 moonIcon.style.display = 'block';
                 sunIconElements.forEach(el => {
                     if (el) el.style.display = 'none';
                 });
             } else {
                 moonIcon.style.display = 'none';
+                sunIconElements.forEach(el => {
+                    if (el) el.style.display = 'block';
+                });
             }
         });
     </script>
