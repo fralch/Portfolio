@@ -100,26 +100,172 @@
             github: 'https://github.com/fralch'
         }
     },
-    'IoT Rural Solutions': {
-        title: 'IoT Rural Solutions - Soluciones Agrícolas',
-        description: 'Conjunto de soluciones IoT basadas en Arduino para monitoreo agrícola y medición ambiental en zonas rurales. Incluye sensores especializados y conectividad de largo alcance para áreas remotas.',
+    'PNG Compress': {
+        title: 'PNG Compress - Optimización de Imágenes',
+        description: 'Librería JavaScript para compresión de imágenes PNG sin pérdida de calidad mediante algoritmos optimizados. Reduce el tamaño de archivos hasta un 70% manteniendo la calidad visual original.',
         features: [
-            'Monitoreo de humedad de suelo en tiempo real',
-            'Sensores de temperatura y humedad ambiental',
-            'Medición de pH del suelo automatizada',
-            'Conectividad LoRaWAN para largas distancias',
-            'Paneles solares para alimentación autónoma',
-            'Dashboard web para visualización de datos',
-            'Alertas por WhatsApp y SMS',
-            'Predicción de riego con machine learning'
+            'Compresión PNG sin pérdida de calidad',
+            'Algoritmos de optimización avanzados',
+            'Procesamiento en el navegador con WebAssembly',
+            'Batch processing para múltiples imágenes',
+            'API simple y documentada',
+            'Compatible con Node.js y navegadores',
+            'Progreso de compresión en tiempo real',
+            'Soporte para imágenes de alta resolución'
         ],
-        techStack: ['Arduino', 'C++', 'LoRaWAN', 'Python', 'Flask', 'SQLite', 'MQTT', 'Grafana'],
-        stats: ['Arduino + C++', 'Sensores ambientales', 'Conectividad LoRaWAN'],
+        techStack: ['JavaScript', 'Canvas API', 'WebAssembly', 'NPM', 'Rollup', 'Jest', 'TypeScript'],
+        stats: ['JavaScript + Canvas API', 'WebAssembly', 'NPM Package'],
         links: {
-            demo: 'https://iot.frankcairampoma.dev',
-            github: 'https://github.com/fralch'
+            demo: 'https://png-compress.frankcairampoma.dev',
+            github: 'https://github.com/fralch/png-compress'
         }
-    }
+        },
+
+        'Pichangas': {
+        title: 'App Pichangas - Reservas Deportivas',
+        description: 'Aplicación móvil para reservar canchas deportivas con sistema de pagos integrado y geolocalización de complejos cercanos. Conecta usuarios con centros deportivos de manera eficiente.',
+        features: [
+            'Reserva de canchas en tiempo real',
+            'Geolocalización de complejos deportivos',
+            'Sistema de pagos con Stripe integrado',
+            'Calendario de disponibilidad interactivo',
+            'Reseñas y calificaciones de usuarios',
+            'Notificaciones push de confirmación',
+            'Chat en vivo con administradores',
+            'Historial de reservas y facturación'
+        ],
+        techStack: ['React Native', 'Expo', 'TypeScript', 'Firebase', 'Stripe API', 'MapBox', 'Redux'],
+        stats: ['React Native + Expo', 'Firebase + Auth', 'Stripe API + MapBox'],
+        links: {
+            demo: 'https://play.google.com/store/apps/pichangas',
+            github: 'https://github.com/fralch/app-pichangas'
+        }
+        },
+
+        'Gym-App': {
+        title: 'App Gym - Control Fitness Inteligente',
+        description: 'Aplicación de gestión fitness con seguimiento de rutinas, análisis de progreso y recomendaciones personalizadas basadas en machine learning para optimizar entrenamientos.',
+        features: [
+            'Control de asistencia con código QR',
+            'Rutinas personalizadas con IA',
+            'Seguimiento de progreso detallado',
+            'Análisis de rendimiento con gráficos',
+            'Recomendaciones nutricionales adaptadas',
+            'Autenticación biométrica segura',
+            'Modo offline con sincronización',
+            'Integración con wearables fitness'
+        ],
+        techStack: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'TensorFlow Lite', 'Redux Toolkit', 'Chart.js'],
+        stats: ['React Native + Expo', 'SQLite + Redux', 'TensorFlow Lite'],
+        links: {
+            demo: 'https://gym-app.frankcairampoma.dev',
+            github: 'https://github.com/fralch/app-gym'
+        }
+        },
+
+        'Que Cocino Hoy': {
+            title: 'Que Cocino Hoy - Asistente Culinario IA',
+            description: 'Asistente culinario inteligente que sugiere recetas personalizadas basadas en ingredientes disponibles mediante reconocimiento de imágenes y procesamiento de lenguaje natural.',
+            features: [
+                'Reconocimiento de ingredientes por cámara',
+                'Sugerencias de recetas con OpenAI GPT-4',
+                'Análisis nutricional automático',
+                'Lista de compras inteligente',
+                'Filtros por dietas especiales y alergias',
+                'Instrucciones paso a paso con timer',
+                'Guardado de recetas favoritas',
+                'Planificación semanal de menús'
+            ],
+            techStack: ['React Native', 'Expo', 'TypeScript', 'OpenAI API', 'Supabase', 'React Query', 'Zustand'],
+            stats: ['React Native + Expo', 'OpenAI GPT-4 Vision', 'Supabase + PostgreSQL'],
+            links: {
+                demo: 'https://que-cocino-hoy.frankcairampoma.dev',
+                github: 'https://github.com/fralch/que-cocino-hoy'
+            }
+        },
+        'CrediACheck': {
+        title: 'CrediACheck - Gestión de RRHH Integral',
+        description: 'Aplicación móvil para gestión integral de recursos humanos con módulos de asistencia, evaluación y nómina. Solución completa para empresas que buscan digitalizar sus procesos de RRHH.',
+        features: [
+            'Control de asistencia con geolocalización',
+            'Sistema de evaluación de desempeño',
+            'Cálculo automático de nóminas',
+            'Gestión de vacaciones y permisos',
+            'Reportes ejecutivos detallados',
+            'Notificaciones push personalizadas',
+            'Dashboard administrativo web',
+            'Integración con sistemas contables'
+        ],
+        techStack: ['React Native', 'Expo', 'Laravel', 'MongoDB', 'JWT', 'PHP', 'Axios', 'Chart.js'],
+        stats: ['React Native + Expo', 'Laravel API REST', 'MongoDB + JWT'],
+        links: {
+            demo: 'https://crediacheck.frankcairampoma.dev',
+            github: 'https://github.com/fralch/crediacheck'
+        }
+        },
+
+        'WhatsApp Message': {
+        title: 'WhatsApp Message - Automatización Librería',
+        description: 'Librería JavaScript para enviar mensajes de WhatsApp mediante escaneo de QR, implementable en cualquier proyecto. Automatiza la comunicación masiva de forma sencilla.',
+        features: [
+            'Envío automatizado de mensajes',
+            'Autenticación por código QR',
+            'Soporte para mensajes multimedia',
+            'Cola de mensajes con delays',
+            'Webhooks para confirmación de entrega',
+            'API REST para integración fácil',
+            'Manejo de sesiones persistentes',
+            'Logs detallados de actividad'
+        ],
+        techStack: ['JavaScript', 'Puppeteer', 'WebSocket', 'Node.js', 'Express', 'NPM', 'Cheerio'],
+        stats: ['JavaScript + Puppeteer', 'WebSocket', 'Node.js + Express'],
+        links: {
+            demo: 'https://wa-message.frankcairampoma.dev',
+            github: 'https://github.com/fralch/whatsapp-message'
+        }
+        },
+
+        'Street Tacos': {
+        title: 'Street Tacos - Delivery Gastronómico',
+        description: 'Plataforma web para pedidos de comida a domicilio especializada en tacos con sistema de seguimiento en tiempo real. Conecta restaurantes locales con clientes hambrientos.',
+        features: [
+            'Catálogo de tacos interactivo',
+            'Seguimiento de pedidos en tiempo real',
+            'Sistema de pagos con Stripe',
+            'Geolocalización de repartidores',
+            'Reseñas y calificaciones',
+            'Programa de fidelización',
+            'Panel administrativo para restaurantes',
+            'Notificaciones web push'
+        ],
+        techStack: ['Astro', 'React', 'Stripe', 'Supabase', 'TypeScript', 'Tailwind CSS', 'PWA'],
+        stats: ['Astro + React', 'Stripe Payments', 'Supabase'],
+        links: {
+            demo: 'https://street-tacos.frankcairampoma.dev',
+            github: 'https://github.com/fralch/street-tacos'
+        }
+        },
+
+        'Puntual App': {
+        title: 'Puntual App - Asistencia Inteligente',
+        description: 'Aplicación móvil para control de asistencia con reconocimiento facial y geolocalización para verificación. Elimina el fraude en marcado de asistencia con tecnología biométrica.',
+        features: [
+            'Reconocimiento facial con IA',
+            'Verificación por geolocalización',
+            'Marcado de entrada y salida',
+            'Detección de anomalías automática',
+            'Reportes de asistencia en tiempo real',
+            'Modo offline con sincronización',
+            'Alertas de tardanzas y ausencias',
+            'Integración con sistemas de nómina'
+        ],
+        techStack: ['React Native', 'TypeScript', 'TensorFlow.js', 'Firebase', 'Face-API.js', 'AsyncStorage'],
+        stats: ['React Native + TypeScript', 'TensorFlow.js', 'Firebase Realtime DB'],
+        links: {
+            demo: 'https://puntual-app.frankcairampoma.dev',
+            github: 'https://github.com/fralch/puntual-app'
+        }
+        }
 };
 
 // Función para abrir el modal
