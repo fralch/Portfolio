@@ -76,8 +76,7 @@
         techStack: ['Astro.js', 'React', 'NestJS', 'PostgreSQL', 'Redis', 'JWT', 'bcrypt', 'Winston'],
         stats: ['Astro.js + React', 'NestJS + PostgreSQL', 'RBAC Security'],
         links: {
-            demo: 'https://docmanager.frankcairampoma.dev',
-            github: 'https://github.com/fralch'
+            github: 'https://github.com/fralch/supera-astro'
         }
     },
     'ContainerTracker GPS': {
@@ -96,8 +95,8 @@
         techStack: ['Laravel', 'Vue.js', 'MySQL', 'Redis', 'WebSockets', 'Google Maps API', 'Chart.js', 'Pusher'],
         stats: ['Laravel + Vue.js', 'MySQL + Redis Cache', 'Real-time GPS tracking'],
         links: {
-            demo: 'https://containertracker.frankcairampoma.dev',
-            github: 'https://github.com/fralch'
+            demo: 'https://www.zgroup.com.pe/',
+            github: 'https://github.com/fralch/_Ztrack_'
         }
     },
     'PNG Compress': {
@@ -116,8 +115,7 @@
         techStack: ['JavaScript', 'Canvas API', 'WebAssembly', 'NPM', 'Rollup', 'Jest', 'TypeScript'],
         stats: ['JavaScript + Canvas API', 'WebAssembly', 'NPM Package'],
         links: {
-            demo: 'https://png-compress.frankcairampoma.dev',
-            github: 'https://github.com/fralch/png-compress'
+            github: 'https://github.com/fralch/PNG-Compressed'
         }
         },
 
@@ -137,8 +135,8 @@
         techStack: ['React Native', 'Expo', 'TypeScript', 'Firebase', 'Stripe API', 'MapBox', 'Redux'],
         stats: ['React Native + Expo', 'Firebase + Auth', 'Stripe API + MapBox'],
         links: {
-            demo: 'https://play.google.com/store/apps/pichangas',
-            github: 'https://github.com/fralch/app-pichangas'
+            demo: '#',
+            github: 'https://github.com/fralch/Pichangas'
         }
         },
 
@@ -158,8 +156,8 @@
         techStack: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'TensorFlow Lite', 'Redux Toolkit', 'Chart.js'],
         stats: ['React Native + Expo', 'SQLite + Redux', 'TensorFlow Lite'],
         links: {
-            demo: 'https://gym-app.frankcairampoma.dev',
-            github: 'https://github.com/fralch/app-gym'
+            demo: '#',
+            github: 'https://github.com/fralch/Gym'
         }
         },
 
@@ -179,8 +177,8 @@
             techStack: ['React Native', 'Expo', 'TypeScript', 'OpenAI API', 'Supabase', 'React Query', 'Zustand'],
             stats: ['React Native + Expo', 'OpenAI GPT-4 Vision', 'Supabase + PostgreSQL'],
             links: {
-                demo: 'https://que-cocino-hoy.frankcairampoma.dev',
-                github: 'https://github.com/fralch/que-cocino-hoy'
+                demo: '#',
+                github: 'https://github.com/fralch/QueCocinoHoy'
             }
         },
         'CrediACheck': {
@@ -199,8 +197,7 @@
         techStack: ['React Native', 'Expo', 'Laravel', 'MongoDB', 'JWT', 'PHP', 'Axios', 'Chart.js'],
         stats: ['React Native + Expo', 'Laravel API REST', 'MongoDB + JWT'],
         links: {
-            demo: 'https://crediacheck.frankcairampoma.dev',
-            github: 'https://github.com/fralch/crediacheck'
+            demo: 'https://play.google.com/store/apps/details?id=com.fralch.credicheck',
         }
         },
 
@@ -220,8 +217,7 @@
         techStack: ['JavaScript', 'Puppeteer', 'WebSocket', 'Node.js', 'Express', 'NPM', 'Cheerio'],
         stats: ['JavaScript + Puppeteer', 'WebSocket', 'Node.js + Express'],
         links: {
-            demo: 'https://wa-message.frankcairampoma.dev',
-            github: 'https://github.com/fralch/whatsapp-message'
+            github: 'https://github.com/fralch/whatsapp-connect'
         }
         },
 
@@ -241,8 +237,7 @@
         techStack: ['Astro', 'React', 'Stripe', 'Supabase', 'TypeScript', 'Tailwind CSS', 'PWA'],
         stats: ['Astro + React', 'Stripe Payments', 'Supabase'],
         links: {
-            demo: 'https://street-tacos.frankcairampoma.dev',
-            github: 'https://github.com/fralch/street-tacos'
+            github: 'https://github.com/fralch/Street-Tacos-Outbox'
         }
         },
 
@@ -262,8 +257,8 @@
         techStack: ['React Native', 'TypeScript', 'TensorFlow.js', 'Firebase', 'Face-API.js', 'AsyncStorage'],
         stats: ['React Native + TypeScript', 'TensorFlow.js', 'Firebase Realtime DB'],
         links: {
-            demo: 'https://puntual-app.frankcairampoma.dev',
-            github: 'https://github.com/fralch/puntual-app'
+            demo: '#',
+            github: 'https://github.com/fralch/PuntualApp'
         }
         }
 };
