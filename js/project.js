@@ -177,7 +177,7 @@
             techStack: ['React Native', 'Expo', 'TypeScript', 'OpenAI API', 'Supabase', 'React Query', 'Zustand'],
             stats: ['React Native + Expo', 'OpenAI GPT-4 Vision', 'Supabase + PostgreSQL'],
             links: {
-                demo: '#',
+                demo: 'https://expo.dev/artifacts/eas/xeu7EyXw5PzToGKnbPJSpY.apk',
                 github: 'https://github.com/fralch/QueCocinoHoy'
             }
         },
