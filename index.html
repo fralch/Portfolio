@@ -44,6 +44,84 @@
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
         }
 
+        /* Color Palettes */
+        [data-palette="blue"] {
+            --accent-primary: #2563eb;
+            --accent-secondary: #3b82f6;
+            --accent-tertiary: #dbeafe;
+        }
+
+        [data-palette="emerald"] {
+            --accent-primary: #059669;
+            --accent-secondary: #10b981;
+            --accent-tertiary: #d1fae5;
+        }
+
+        [data-palette="purple"] {
+            --accent-primary: #7c3aed;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #e9d5ff;
+        }
+
+        [data-palette="pink"] {
+            --accent-primary: #db2777;
+            --accent-secondary: #ec4899;
+            --accent-tertiary: #fce7f3;
+        }
+
+        [data-palette="orange"] {
+            --accent-primary: #ea580c;
+            --accent-secondary: #f97316;
+            --accent-tertiary: #fed7aa;
+        }
+
+        [data-palette="cyan"] {
+            --accent-primary: #0891b2;
+            --accent-secondary: #06b6d4;
+            --accent-tertiary: #cffafe;
+        }
+
+        [data-palette="red"] {
+            --accent-primary: #dc2626;
+            --accent-secondary: #ef4444;
+            --accent-tertiary: #fecaca;
+        }
+
+        [data-palette="indigo"] {
+            --accent-primary: #4338ca;
+            --accent-secondary: #6366f1;
+            --accent-tertiary: #e0e7ff;
+        }
+
+        /* Dark theme palette adjustments */
+        [data-theme="dark"][data-palette="emerald"] {
+            --accent-tertiary: #064e3b;
+        }
+
+        [data-theme="dark"][data-palette="purple"] {
+            --accent-tertiary: #581c87;
+        }
+
+        [data-theme="dark"][data-palette="pink"] {
+            --accent-tertiary: #831843;
+        }
+
+        [data-theme="dark"][data-palette="orange"] {
+            --accent-tertiary: #9a3412;
+        }
+
+        [data-theme="dark"][data-palette="cyan"] {
+            --accent-tertiary: #164e63;
+        }
+
+        [data-theme="dark"][data-palette="red"] {
+            --accent-tertiary: #991b1b;
+        }
+
+        [data-theme="dark"][data-palette="indigo"] {
+            --accent-tertiary: #312e81;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -222,12 +300,17 @@
             transform: translateY(-2px);
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
+        /* Control Panel */
+        .control-panel {
             position: fixed;
             top: 24px;
             right: 24px;
             z-index: 100;
+            display: flex;
+            gap: 12px;
+        }
+
+        .control-btn {
             background: var(--background-secondary);
             border: 1px solid var(--border-color);
             border-radius: 50%;
@@ -241,9 +324,17 @@
             box-shadow: var(--shadow-md);
         }
 
-        .theme-toggle:hover {
+        .control-btn:hover {
             transform: scale(1.1);
             box-shadow: var(--shadow-lg);
+        }
+
+        .theme-toggle {
+            /* Inherits from .control-btn */
+        }
+
+        .palette-toggle {
+            /* Inherits from .control-btn */
         }
 
         /* Main Content */
@@ -744,6 +835,122 @@
             color: var(--accent-primary);
         }
 
+        /* Color Palette Modal */
+        .palette-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .palette-modal-content {
+            background: var(--background-secondary);
+            margin: 10% auto;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow-xl);
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .palette-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--hover-bg);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .palette-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .palette-modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .palette-modal-close:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .palette-modal-body {
+            padding: 32px;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .palette-option {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--background-primary);
+        }
+
+        .palette-option:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .palette-option.active {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-tertiary);
+        }
+
+        .palette-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .palette-colors {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .color-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+        }
+
+        .palette-description {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-align: center;
+            line-height: 1.4;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .container {
@@ -763,7 +970,7 @@
                 padding: 24px;
             }
             
-            .theme-toggle {
+            .control-panel {
                 top: 16px;
                 right: 16px;
             }
@@ -881,6 +1088,60 @@
             }
         }
         
+        /* Palette modal responsive styles */
+        @media (max-width: 768px) {
+            .palette-modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .palette-modal-header {
+                padding: 16px 20px;
+            }
+            
+            .palette-modal-body {
+                padding: 20px;
+            }
+            
+            .palette-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .palette-option {
+                padding: 12px;
+            }
+            
+            .color-swatch {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .palette-modal-content {
+                width: 98%;
+                margin: 2% auto;
+            }
+            
+            .palette-modal-header {
+                padding: 12px 16px;
+            }
+            
+            .palette-modal-body {
+                padding: 16px;
+            }
+            
+            .palette-grid {
+                gap: 12px;
+            }
+            
+            .color-swatch {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        
         /* Extra small devices (phones, 480px and down) */
         @media (max-width: 480px) {
             .container {
@@ -976,14 +1237,18 @@
                 font-size: 14px;
             }
             
-            .theme-toggle {
-                width: 40px;
-                height: 40px;
+            .control-panel {
                 top: 12px;
                 right: 12px;
+                gap: 8px;
             }
             
-            .theme-toggle svg {
+            .control-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .control-btn svg {
                 width: 20px;
                 height: 20px;
             }
@@ -1427,12 +1692,117 @@
         </div>
     </div>
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-    </button>
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <button class="control-btn theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+        
+        <button class="control-btn palette-toggle" id="palette-toggle" aria-label="Open color palette">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5"></circle>
+                <circle cx="17.5" cy="10.5" r=".5"></circle>
+                <circle cx="8.5" cy="7.5" r=".5"></circle>
+                <circle cx="6.5" cy="12.5" r=".5"></circle>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Color Palette Modal -->
+    <div id="paletteModal" class="palette-modal">
+        <div class="palette-modal-content">
+            <div class="palette-modal-header">
+                <h2 class="palette-modal-title">Elige tu paleta de colores</h2>
+                <button class="palette-modal-close" id="paletteModalClose">&times;</button>
+            </div>
+            <div class="palette-modal-body">
+                <div class="palette-grid">
+                    <div class="palette-option" data-palette="blue">
+                        <div class="palette-name">Azul Clásico</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #2563eb;"></div>
+                            <div class="color-swatch" style="background: #3b82f6;"></div>
+                            <div class="color-swatch" style="background: #dbeafe;"></div>
+                        </div>
+                        <div class="palette-description">Profesional y confiable</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="emerald">
+                        <div class="palette-name">Verde Esmeralda</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #059669;"></div>
+                            <div class="color-swatch" style="background: #10b981;"></div>
+                            <div class="color-swatch" style="background: #d1fae5;"></div>
+                        </div>
+                        <div class="palette-description">Fresco y natural</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="purple">
+                        <div class="palette-name">Púrpura Vibrante</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #7c3aed;"></div>
+                            <div class="color-swatch" style="background: #8b5cf6;"></div>
+                            <div class="color-swatch" style="background: #e9d5ff;"></div>
+                        </div>
+                        <div class="palette-description">Creativo e innovador</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="pink">
+                        <div class="palette-name">Rosa Moderno</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #db2777;"></div>
+                            <div class="color-swatch" style="background: #ec4899;"></div>
+                            <div class="color-swatch" style="background: #fce7f3;"></div>
+                        </div>
+                        <div class="palette-description">Audaz y distintivo</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="orange">
+                        <div class="palette-name">Naranja Energético</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #ea580c;"></div>
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                            <div class="color-swatch" style="background: #fed7aa;"></div>
+                        </div>
+                        <div class="palette-description">Cálido y dinámico</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="cyan">
+                        <div class="palette-name">Cian Tecnológico</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #0891b2;"></div>
+                            <div class="color-swatch" style="background: #06b6d4;"></div>
+                            <div class="color-swatch" style="background: #cffafe;"></div>
+                        </div>
+                        <div class="palette-description">Moderno y tech</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="red">
+                        <div class="palette-name">Rojo Potente</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #dc2626;"></div>
+                            <div class="color-swatch" style="background: #ef4444;"></div>
+                            <div class="color-swatch" style="background: #fecaca;"></div>
+                        </div>
+                        <div class="palette-description">Intenso y llamativo</div>
+                    </div>
+                    
+                    <div class="palette-option" data-palette="indigo">
+                        <div class="palette-name">Índigo Profundo</div>
+                        <div class="palette-colors">
+                            <div class="color-swatch" style="background: #4338ca;"></div>
+                            <div class="color-swatch" style="background: #6366f1;"></div>
+                            <div class="color-swatch" style="background: #e0e7ff;"></div>
+                        </div>
+                        <div class="palette-description">Elegante y sofisticado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Project details data
@@ -1641,14 +2011,32 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Theme toggle functionality
+        // Theme and palette functionality
         const themeToggle = document.getElementById('theme-toggle');
+        const paletteToggle = document.getElementById('palette-toggle');
+        const paletteModal = document.getElementById('paletteModal');
+        const paletteModalClose = document.getElementById('paletteModalClose');
         const html = document.documentElement;
         
-        // Check for saved theme preference or default to 'dark'
+        // Check for saved preferences or default values
         const currentTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', currentTheme);
+        const currentPalette = localStorage.getItem('palette') || 'blue';
         
+        html.setAttribute('data-theme', currentTheme);
+        html.setAttribute('data-palette', currentPalette);
+        
+        // Update active palette option
+        function updateActivePalette() {
+            const savedPalette = localStorage.getItem('palette') || 'blue';
+            document.querySelectorAll('.palette-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.palette === savedPalette) {
+                    option.classList.add('active');
+                }
+            });
+        }
+        
+        // Theme toggle functionality
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1664,9 +2052,62 @@
                 icon.setAttribute('d', 'M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42');
             }
         });
+        
+        // Palette modal functionality
+        function openPaletteModal() {
+            paletteModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            updateActivePalette();
+        }
+        
+        function closePaletteModal() {
+            paletteModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        paletteToggle.addEventListener('click', openPaletteModal);
+        paletteModalClose.addEventListener('click', closePaletteModal);
+        
+        // Close modal when clicking outside
+        paletteModal.addEventListener('click', function(e) {
+            if (e.target === paletteModal) {
+                closePaletteModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && paletteModal.style.display === 'block') {
+                closePaletteModal();
+            }
+        });
+        
+        // Palette selection functionality
+        document.querySelectorAll('.palette-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const selectedPalette = this.dataset.palette;
+                
+                // Update HTML attribute
+                html.setAttribute('data-palette', selectedPalette);
+                
+                // Save to localStorage
+                localStorage.setItem('palette', selectedPalette);
+                
+                // Update active state
+                document.querySelectorAll('.palette-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Close modal after a short delay to show selection
+                setTimeout(() => {
+                    closePaletteModal();
+                }, 300);
+            });
+        });
 
         // Project modal event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize active palette on load
+            updateActivePalette();
             // Add event listeners to project cards
             const projectCards = document.querySelectorAll('.project-card');
             projectCards.forEach(card => {
