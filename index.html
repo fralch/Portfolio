@@ -744,17 +744,34 @@
             
             .sidebar {
                 position: static;
-                order: 2;
+                order: 1; /* Changed to show sidebar on top */
             }
             
             .main-content {
-                order: 1;
+                order: 2; /* Changed to show main content after sidebar */
             }
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 16px;
+            }
+
+            .sidebar {
+                padding: 24px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name {
+                font-size: 24px;
+            }
+
+            .title {
+                font-size: 16px;
             }
             
             .hero-title {
