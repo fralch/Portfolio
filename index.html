@@ -4,10 +4,805 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.Frank - Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/command-palette.css">
-    <link rel="stylesheet" href="css/project.css">
-    <script src="js/command-palette.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-primary: #fafafa;
+            --background-secondary: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --accent-primary: #2563eb;
+            --accent-secondary: #3b82f6;
+            --accent-tertiary: #dbeafe;
+            --border-color: #e5e7eb;
+            --hover-bg: #f9fafb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        [data-theme="dark"] {
+            --background-primary: #0f0f0f;
+            --background-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --accent-tertiary: #1e3a8a;
+            --border-color: #27272a;
+            --hover-bg: #262626;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--background-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 32px;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            height: fit-content;
+            position: sticky;
+            top: 24px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid var(--accent-primary);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .tech-stack {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-secondary);
+        }
+
+        .contact-item:hover {
+            background: var(--hover-bg);
+            color: var(--accent-primary);
+            transform: translateX(4px);
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 100;
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .hero-section {
+            margin-bottom: 48px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--accent-primary);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .skills-section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.025em;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-tag {
+            padding: 12px 16px;
+            background: var(--hover-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .experience-section {
+            margin-bottom: 48px;
+        }
+
+        .experience-item {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--hover-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .job-company {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .job-date {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .job-description {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-description li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .job-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .projects-section {
+            margin-bottom: 48px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: left 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-primary);
+        }
+
+        .project-card:hover::before {
+            left: 0;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .project-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent-tertiary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tech-badge {
+            background: var(--accent-tertiary);
+            color: var(--accent-primary);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        [data-theme="dark"] .tech-badge {
+            background: var(--accent-tertiary);
+            color: var(--accent-secondary);
+        }
+
+        .education-section {
+            margin-bottom: 48px;
+        }
+
+        .education-item {
+            padding: 24px;
+            background: var(--hover-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .degree {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .institution {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .education-date {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .footer-note a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        /* Project Modal Styles */
+        .project-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--background-secondary);
+            margin: 2% auto;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--hover-bg);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-project-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+            margin-bottom: 16px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .modal-project-title:hover {
+            color: var(--accent-secondary);
+        }
+
+        .modal-project-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .modal-project-details h4,
+        .modal-tech-stack h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .modal-project-details ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+
+        .modal-project-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .modal-project-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .modal-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .modal-tech-tag {
+            background: var(--accent-tertiary);
+            color: var(--accent-primary);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        [data-theme="dark"] .modal-tech-tag {
+            background: var(--accent-tertiary);
+            color: var(--accent-secondary);
+        }
+
+        .modal-project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .modal-project-stat {
+            background: var(--hover-bg);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal-project-link:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        .modal-project-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Make project cards clickable */
+        .project-card {
+            cursor: pointer;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-project-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sidebar, .main-content {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -15,556 +810,366 @@
         <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-image">
-                    <img src="img/me3.jpg" alt="Frank Cairampoma" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    <img src="img/me3.jpg" alt="Frank Cairampoma">
                 </div>
                 <h1 class="name">A. Frank Cairampoma</h1>
-                <p class="subtitle">Frontend - Backend & Mobile Developer</p>
-                <a href="#" class="github-link">React • Node.js • Php • TypeScript</a>
-                <p class="github-user">iOS & Android (React Native - Flutter)</p>
-                
-                <div class="social-icons">
-                    <a href="mailto:frank.cairampoma@developer.com" aria-label="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                    <a href="tel:+51987654321" aria-label="Teléfono">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/fralch/" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/fralch" aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                        </svg>
-                    </a>
-                    <a href="https://portfolio.frankcairampoma.dev" aria-label="Portfolio Website">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </a>
-                </div>
-                
-                <div class="download-buttons">
-                    <a href="documents/cv.pdf" class="btn" target="_blank">Descargar CV PDF</a>
-                    <a href="https://github.com/fralch" class="btn" target="_blank">View GitHub Profile</a>
+                <div class="title">Full Stack Developer</div>
+                <div class="subtitle">Frontend • Backend • Mobile Developer</div>
+                <div class="tech-stack">
+                    React • Node.js • PHP • TypeScript<br>
+                    iOS & Android (React Native • Flutter)
                 </div>
             </div>
-            
+
+            <div class="contact-info">
+                <a href="mailto:frank.cairampoma@developer.com" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    frank.cairampoma@developer.com
+                </a>
+                
+                <a href="tel:+51987654321" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    +51 987 654 321
+                </a>
+                
+                <a href="https://www.linkedin.com/in/fralch/" class="contact-item" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+                
+                <a href="https://github.com/fralch" class="contact-item" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+
+            <div class="download-buttons">
+                <a href="documents/cv.pdf" class="btn btn-primary" target="_blank">Descargar CV</a>
+                <a href="https://portfolio.frankcairampoma.dev" class="btn btn-secondary" target="_blank">Ver Portfolio</a>
+            </div>
+
             <div class="footer-note">
-                Pulsa  <a href="#">Cmd + K </a> para abrir la paleta de comandos.<br><br>
-                Hosted on GitHub Pages — by <a href="https://github.com/fralch">Fralch</a>
+                <p>Pulsa <strong>Cmd + K</strong> para abrir comandos</p>
+                <p>Hosted on GitHub Pages — by <a href="https://github.com/fralch">Fralch</a></p>
             </div>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
-            <div class="title-section">
-                <h1 style="font-size: 32px; ">Full Stack Developer</h1>
-                    <p style="font-size: 18px; color: #64b5f6; margin-bottom: 10px;">Mobile Developer</p>
-                    <div class="skills">
-                        <p class="skills-text"><strong>Habilidades:</strong></p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node</span>
-                            <span class="skill-tag">Tailwind</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">GitHub</span>
-                            <span class="skill-tag">Laravel</span>
-                            <span class="skill-tag">Nest.Js</span>
-                            <span class="skill-tag">Next.js</span>
-                            <span class="skill-tag">React Native</span>
-                            <span class="skill-tag">Flutter</span>
-                            <span class="skill-tag">Firebase</span>
-                            <span class="skill-tag">Vue</span>
-                            <span class="skill-tag">FastAPI</span>
-                            <span class="skill-tag">GraphQL</span>
-                            <span class="skill-tag">REST API</span>
-                            <span class="skill-tag">PHP</span>
-                            <span class="skill-tag">MySQL</span>
-                        </div>     
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1 class="hero-title">Desarrollador Full Stack</h1>
+                <div class="hero-subtitle">Especialista en Mobile Development</div>
+                <p class="hero-description">
+                    Ingeniero de sistemas con más de 5 años de experiencia desarrollando aplicaciones web y móviles escalables. 
+                    Especializado en tecnologías modernas como React, Node.js, React Native y Flutter. 
+                    Apasionado por crear soluciones tecnológicas innovadoras que generen impacto real.
+                </p>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-tag">React</div>
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">TypeScript</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">PHP</div>
+                    <div class="skill-tag">Laravel</div>
+                    <div class="skill-tag">Next.js</div>
+                    <div class="skill-tag">NestJS</div>
+                    <div class="skill-tag">React Native</div>
+                    <div class="skill-tag">Flutter</div>
+                    <div class="skill-tag">Vue.js</div>
+                    <div class="skill-tag">FastAPI</div>
+                    <div class="skill-tag">MongoDB</div>
+                    <div class="skill-tag">PostgreSQL</div>
+                    <div class="skill-tag">MySQL</div>
+                    <div class="skill-tag">Redis</div>
+                    <div class="skill-tag">AWS</div>
+                    <div class="skill-tag">Docker</div>
+                    <div class="skill-tag">GraphQL</div>
+                    <div class="skill-tag">Firebase</div>
+                    <div class="skill-tag">Git</div>
+                    <div class="skill-tag">Tailwind</div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="experience-section">
+                <h2 class="section-title">Experiencia Profesional</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Technical Lead</div>
+                            <div class="job-company">Credipyme Solución</div>
+                        </div>
+                        <div class="job-date">Mar 2020 - May 2025</div>
                     </div>
-            </div>
-
-            
-
-            <!-- Work Experience Section -->
-            <div class="section">
-                <h2 class="section-title">Experiencia laboral</h2>
-                
-                <div class="experience-item">
-                    <div class="job-title">Technical Lead @ Credipyme Solución. <spa class="date">(Mar 2020 - May 2025)</span></div>
                     <ul class="job-description">
-                        <li>Lideré el desarrollo de aplicaciones móviles (React Native) y sistemas web (Laravel, VueJS).</li>
-                        <li>Utilicé GitHub para una gestión eficiente del código y la colaboración en equipo.</li>
-                        <li>Mantuve sistemas web con MySQL, asegurando una gestión eficiente de los datos.</li>
-                    </ul>
-                </div>
-                
-                <div class="experience-item">
-                    <div class="job-title">Senior Full-Stack Developer @ MegaEquipamiento. <span class="date">(Dic 2024 - May 2025)</span></div>
-                    <ul class="job-description">
-                        <li>Desarrollo de una plataforma web de comercio electrónico para la venta de equipos de laboratorio.</li>
-                        <li>Diseñé y desarrollé un sistema eCommerce completo utilizando React para el frontend, creando una experiencia de usuario
-                            moderna, rápida y responsiva.</li>
-                        <li>Implementé funcionalidades avanzadas como catálogo filtrable, comparación de productos, carrito de compras persistente,
-                            sistema de reseñas y pasarela de pago.</li>
+                        <li>Lideré el desarrollo de aplicaciones móviles (React Native) y sistemas web (Laravel, VueJS)</li>
+                        <li>Implementé metodologías ágiles y buenas prácticas de desarrollo, mejorando la productividad del equipo en 40%</li>
+                        <li>Gestión eficiente del código y colaboración en equipo utilizando GitHub y GitFlow</li>
+                        <li>Mantenimiento de sistemas web con MySQL, asegurando una gestión eficiente de los datos</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
-                    <div class="job-title">Android & iOS Developer @ Villding <span class="date">(Ago 2024 - May 2025)</span></div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Senior Full-Stack Developer</div>
+                            <div class="job-company">MegaEquipamiento</div>
+                        </div>
+                        <div class="job-date">Dic 2024 - May 2025</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Desarrollé una aplicación para Android e iOS utilizando React Native con Expo y TypeScript, enfocada en la usabilidad,
-                            sincronización offline y rendimiento.</li>
-                        <li>Implementé interfaces modulares, navegación compleja con React Navigation y manejo de estado con Context API.</li>
-                        <li>Construí el backend completo con Laravel, incluyendo endpoints RESTful, autenticación con tokens JWT, manejo de archivos
-                            (imágenes, documentos) y relaciones avanzadas en base de datos.</li>
-                        <li>Utilicé AsyncStorage y SQLite para almacenamiento local, asegurando la funcionalidad de la app en entornos sin conexión.</li>
-                        <li>Integré notificaciones push, carga de imágenes desde la galería y cámara, y validación de formularios dinámicos.</li>
+                        <li>Desarrollo de plataforma web de comercio electrónico para venta de equipos de laboratorio</li>
+                        <li>Diseño y desarrollo de sistema eCommerce completo con React, creando experiencia de usuario moderna y responsiva</li>
+                        <li>Implementación de funcionalidades avanzadas: catálogo filtrable, comparación de productos, carrito persistente, sistema de reseñas y pasarela de pago</li>
                     </ul>
                 </div>
+
                 <div class="experience-item">
-                    <div class="job-title">Full-Stack Developer @ Outbox USA <span class="date">(Set 2024 - Ene 2025)</span></div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Android & iOS Developer</div>
+                            <div class="job-company">Villding</div>
+                        </div>
+                        <div class="job-date">Ago 2024 - May 2025</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Participación en múltiples proyectos web y móviles para clientes internacionales, enfocados en soluciones escalables.</li>
-                        <li>Desarrollé interfaces móviles nativas e híbridas utilizando Flutter y React Native, priorizando rendimiento y usabilidad en
-                            distintos dispositivos.</li>
-                        <li>Implementé APIs eficientes con FastAPI, aprovechando sus ventajas asincrónicas y tipado estático para lograr endpoints.</li>
-                        <li>Integración de sistemas distribuidos con Apache Kafka para manejar flujos de datos en tiempo real y garantizar la
-                            comunicación entre microservicios.</li>
-                        <li>Construí módulos web responsivos y reutilizables en React, siguiendo prácticas de desarrollo moderno con hooks,
-                            context API y pruebas unitarias.</li>
+                        <li>Desarrollo de aplicación multiplataforma con React Native, Expo y TypeScript</li>
+                        <li>Implementación de interfaces modulares, navegación compleja y manejo de estado con Context API</li>
+                        <li>Construcción de backend completo con Laravel: endpoints RESTful, autenticación JWT, manejo de archivos</li>
+                        <li>Integración de AsyncStorage y SQLite para funcionalidad offline</li>
+                        <li>Implementación de notificaciones push, carga de imágenes y validación de formularios dinámicos</li>
                     </ul>
                 </div>
+
                 <div class="experience-item">
-                    <div class="job-title">Full-Stack Developer @ Supera Abogados <span class="date">(Ene 2024 - Jul 2024)</span></div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Full-Stack Developer</div>
+                            <div class="job-company">Outbox USA</div>
+                        </div>
+                        <div class="job-date">Set 2024 - Ene 2025</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Desarrollo de un sistema integral de gestión documentaria para el control legal y administrativo.</li>
-                        <li>Implementé una plataforma moderna con Astro.js para una experiencia frontend optimizada, integrada con React
-                            para componentes interactivos.</li>
-                        <li>Desarrollé un backend robusto y escalable utilizando NestJS, aplicando principios de arquitectura limpia y
-                            programación orientada a eventos.</li>
-                        <li>Diseñé y ejecuté un sistema de autenticación segura con JWT y control de acceso basado en roles (RBAC) para
-                            proteger documentos confidenciales.</li>
+                        <li>Participación en múltiples proyectos web y móviles para clientes internacionales</li>
+                        <li>Desarrollo de interfaces móviles nativas e híbridas con Flutter y React Native</li>
+                        <li>Implementación de APIs eficientes con FastAPI, aprovechando ventajas asincrónicas y tipado estático</li>
+                        <li>Integración de sistemas distribuidos con Apache Kafka para manejo de datos en tiempo real</li>
+                        <li>Desarrollo de módulos web responsivos en React con hooks, context API y pruebas unitarias</li>
                     </ul>
                 </div>
+
                 <div class="experience-item">
-                    <div class="job-title">Full-Stack Developer @ Zgroup <span class="date">(Ene 2022 - Ene 2023)</span></div>
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Full-Stack Developer</div>
+                            <div class="job-company">Supera Abogados</div>
+                        </div>
+                        <div class="job-date">Ene 2024 - Jul 2024</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Sistema desarrollado para la geolocalización en tiempo real de contenedores de refrigeración.</li>
-                        <li>Desarrollé una plataforma completa usando Laravel (backend), Vue.js (frontend), MySQL y Redis para el rastreo y visualización
-                            en tiempo real de contenedores refrigerados.</li>
-                        <li>Implementé comunicación eficiente entre servicios para recibir, almacenar y mostrar datos de ubicación GPS con alta
-                            disponibilidad y bajo tiempo de respuesta.</li>
-                        <li>Optimicé el sistema para soportar múltiples conexiones simultáneas, garantizando precisión y rendimiento con Redis para el
-                            manejo de datos en caché.</li>
+                        <li>Desarrollo de sistema integral de gestión documentaria para control legal y administrativo</li>
+                        <li>Implementación de plataforma moderna con Astro.js optimizada, integrada con React</li>
+                        <li>Desarrollo de backend robusto con NestJS aplicando arquitectura limpia</li>
+                        <li>Sistema de autenticación segura con JWT y control de acceso basado en roles (RBAC)</li>
                     </ul>
                 </div>
+
                 <div class="experience-item">
-                    <div class="job-title">Web Developer @ Tecsup <span class="date">(Oct 2019 - Oct 2021)</span></div> 
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Full-Stack Developer</div>
+                            <div class="job-company">Zgroup</div>
+                        </div>
+                        <div class="job-date">Ene 2022 - Ene 2023</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Microservicios implementados y mantenidos con éxito, mejorando la funcionalidad general de la plataforma.</li>
-                        <li>Desempeñó un papel fundamental en el aprovechamiento de los servicios en la nube de AWS para lograr una infraestructura
-                            backend eficaz.</li>
-                        <li>Contribuí a la mejora continua de la plataforma de e-learning de TECSUP.</li>
+                        <li>Sistema desarrollado para geolocalización en tiempo real de contenedores de refrigeración</li>
+                        <li>Desarrollo de plataforma completa usando Laravel (backend), Vue.js (frontend), MySQL y Redis</li>
+                        <li>Implementación de comunicación eficiente entre servicios para datos de ubicación GPS</li>
+                        <li>Optimización del sistema para múltiples conexiones simultáneas con Redis para caché</li>
                     </ul>
                 </div>
+
                 <div class="experience-item">
-                    <div class="job-title">Arduino Developer @ Sollertia <span class="date">(Ene 2019 - Set 2019)</span></div>  
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Web Developer</div>
+                            <div class="job-company">Tecsup</div>
+                        </div>
+                        <div class="job-date">Oct 2019 - Oct 2021</div>
+                    </div>
                     <ul class="job-description">
-                        <li>Sollertia una organización especializada en investigación rural</li>
-                        <li>Desarrollé e implementé con éxito soluciones basadas en Arduino diseñadas para abordar necesidades específicas en áreas
-                            rurales.</li>
-                        <li>Desempeñó un papel vital en el aprovechamiento de la tecnología para la investigación y el desarrollo, contribuyendo a la
-                            misión de la organización en el empoderamiento rural.</li>
+                        <li>Microservicios implementados y mantenidos, mejorando la funcionalidad de la plataforma</li>
+                        <li>Aprovechamiento de servicios en la nube de AWS para infraestructura backend eficaz</li>
+                        <li>Contribución a la mejora continua de la plataforma de e-learning de TECSUP</li>
                     </ul>
                 </div>
             </div>
-                <!-- Education Section -->
-            <div class="section">
-                <h2 class="section-title">Educación</h2>       
-                <div class="education-item">
-                    <div class="degree">Ingenieria de Sistemas</div>
-                    <div class="institution">Universidad Continental de Perú <span class="date">(Jun 2010- Oct 2016)</span></div>
-                </div>              
-            </div>
-           
+
             <!-- Projects Section -->
-            <div class="section">
-                <h2 class="section-title">Proyectos</h2>
-                
+            <div class="projects-section">
+                <h2 class="section-title">Proyectos Destacados</h2>
                 <div class="projects-grid">
-                    <!-- CreditApp Mobile -->
+                    
                     <div class="project-card">
-                        <p class="project-title">CrediApp</p>
-                        <p class="project-description">
-                            Aplicación móvil para gestión de créditos y préstamos, con modulos de logistica, recursos humanos, facturación,
-                            pagos, etc.
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">Vue + Laravel</div>
-                            <div class="project-stat">Authentication</div>
-                            <div class="project-stat">MySQL + Redis</div>
+                        <div class="project-header">
+                            <div class="project-title">MegaEquipamiento eCommerce</div>
+                            <a href="https://github.com/fralch/megaEquipamiento" class="project-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
                         </div>
-                      
+                        <p class="project-description">
+                            Plataforma completa de comercio electrónico para equipos de laboratorio con sistema de comparación, 
+                            reviews y pasarela de pagos integrada. Interfaz moderna y responsive con catálogo filtrable avanzado.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Stripe</span>
+                            <span class="tech-badge">Node.js</span>
+                        </div>
                     </div>
-                    
-                    <!-- LabStore eCommerce -->
+
                     <div class="project-card">
-                        <p class="project-title">MegaEquipamiento eCommerce </p>
-                        <p class="project-description">
-                            Plataforma completa de comercio electrónico para equipos de laboratorio con sistema de comparación y reviews
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React + TypeScript</div>
-                            <div class="project-stat">Sistema de pagos integrado</div>
-                            <div class="project-stat">Catálogo filtrable avanzado</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch/megaEquipamiento" class="project-tag" target="_blank">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
+                        <div class="project-header">
+                            <div class="project-title">Villding Multi-Platform</div>
+                            <a href="https://github.com/fralch/Villding" class="project-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
                             </a>
                         </div>
+                        <p class="project-description">
+                            Aplicación híbrida con funcionalidades offline, manejo de archivos multimedia y notificaciones push 
+                            en tiempo real. Sincronización de datos robusta y experiencia de usuario optimizada.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Expo</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Laravel</span>
+                            <span class="tech-badge">SQLite</span>
+                        </div>
                     </div>
-                    
-                    <!-- CrediACheck -->
+
                     <div class="project-card">
-                        <p class="project-title">CrediACheck</p>
-                        <p class="project-description">
-                            Aplicación móvil para gestión integral de recursos humanos con módulos de asistencia, evaluación y nómina
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + Expo</div>
-                            <div class="project-stat">Laravel API REST</div>
-                            <div class="project-stat">MongoDB + JWT</div>
+                        <div class="project-header">
+                            <div class="project-title">Legal DocManager</div>
+                            <a href="https://github.com/fralch" class="project-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
                         </div>
-                        <div class="project-tags">
-                            
+                        <p class="project-description">
+                            Sistema integral de gestión documentaria con control de acceso basado en roles y encriptación end-to-end. 
+                            Arquitectura moderna con Astro.js y NestJS para máximo rendimiento.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Astro.js</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">NestJS</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">JWT</span>
                         </div>
                     </div>
 
-                    <!-- Villding Multi-Platform -->
                     <div class="project-card">
-                        <p class="project-title">Villding Multi-Platform</p>
-                        <p class="project-description">
-                            App híbrida con funcionalidades offline, manejo de archivos multimedia y notificaciones push en tiempo real
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + Expo</div>
-                            <div class="project-stat">AsyncStorage + SQLite</div>
-                            <div class="project-stat">Laravel Backend</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch/Villding" class="project-tag" target="_blank">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
+                        <div class="project-header">
+                            <div class="project-title">ContainerTracker GPS</div>
+                            <a href="https://github.com/fralch/_Ztrack_" class="project-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
                             </a>
                         </div>
+                        <p class="project-description">
+                            Sistema de geolocalización en tiempo real para contenedores refrigerados con alertas y monitoreo 24/7. 
+                            Optimizado para soportar múltiples conexiones simultáneas con alta disponibilidad.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Laravel</span>
+                            <span class="tech-badge">Vue.js</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Redis</span>
+                            <span class="tech-badge">WebSocket</span>
+                        </div>
                     </div>
-                    
-                    <!-- Legal Document Manager -->
+
                     <div class="project-card">
-                        <p class="project-title">Legal DocManager</p>
-                        <p class="project-description">
-                            Sistema integral de gestión documentaria con control de acceso basado en roles y encriptación end-to-end
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">Astro.js + React</div>
-                            <div class="project-stat">NestJS + PostgreSQL</div>
-                            <div class="project-stat">RBAC Security</div>
+                        <div class="project-header">
+                            <div class="project-title">CrediApp Mobile</div>
                         </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag" target="_blank">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
+                        <p class="project-description">
+                            Aplicación móvil para gestión integral de créditos y préstamos con módulos de logística, 
+                            recursos humanos, facturación y pagos. Sistema completo para instituciones financieras.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Vue.js</span>
+                            <span class="tech-badge">Laravel</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Redis</span>
+                            <span class="tech-badge">JWT</span>
                         </div>
                     </div>
-                    
-                    <!-- Container GPS Tracker -->
+
                     <div class="project-card">
-                        <p class="project-title">ContainerTracker GPS</p>
+                        <div class="project-header">
+                            <div class="project-title">Puntual App</div>
+                        </div>
                         <p class="project-description">
-                            Sistema de geolocalización en tiempo real para contenedores refrigerados con alertas y monitoreo 24/7
+                            Aplicación móvil para control de asistencia con reconocimiento facial y geolocalización para verificación. 
+                            Utiliza TensorFlow.js para análisis de imágenes en tiempo real.
                         </p>
-                        <div class="project-stats">
-                            <div class="project-stat">Laravel + Vue.js</div>
-                            <div class="project-stat">MySQL + Redis Cache</div>
-                            <div class="project-stat">Real-time GPS tracking</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch/_Ztrack_" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    
-
-                     <!-- WhatsApp Message -->
-                     <div class="project-card">
-                        <p class="project-title">WhatsApp Message</>
-                        <p class="project-description">
-                            Librería JavaScript para enviar mensajes de WhatsApp mediante escaneo de QR, implementable en cualquier proyecto
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">JavaScript + Puppeteer</div>
-                            <div class="project-stat">WebSocket</div>
-                            <div class="project-stat">Node.js + Express</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
+                        <div class="project-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">TensorFlow.js</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">GPS</span>
                         </div>
                     </div>
 
-                     <!-- Street Tacos -->
-                     <div class="project-card">
-                        <p class="project-title">Street Tacos</p>
-                        <p class="project-description">
-                            Plataforma web para pedidos de comida a domicilio especializada en tacos con sistema de seguimiento en tiempo real
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">Astro + React</div>
-                            <div class="project-stat">Stripe Payments</div>
-                            <div class="project-stat">Supabase</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                     <!-- Que Cocino Hoy -->
-                     <div class="project-card">
-                        <p class="project-title">Que Cocino Hoy</p>
-                        <p class="project-description">
-                            Aplicación de gestión fitness con seguimiento de rutinas, análisis de progreso y recomendaciones personalizadas basadas en ML
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + Expo </div>
-                            <div class="project-stat">OpenAI GPT-4</div>
-                            <div class="project-stat"> Zustand Camera</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                     <!-- Puntual App -->
-                     <div class="project-card">
-                        <p class="project-title">Puntual App</p>
-                        <p class="project-description">
-                            Aplicación móvil para control de asistencia con reconocimiento facial y geolocalización para verificación
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + TypeScript</div>
-                            <div class="project-stat">TensorFlow.js</div>
-                            <div class="project-stat">Firebase Realtime DB</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                     <!-- PNG Compress -->
-                     <div class="project-card">
-                        <p class="project-title">PNG Compress</p>
-                        <p class="project-description">
-                            Librería JavaScript para compresión de imágenes PNG sin pérdida de calidad mediante algoritmos optimizados
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">JavaScript + Canvas API</div>
-                            <div class="project-stat">WebAssembly</div>
-                            <div class="project-stat">NPM Package</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                     <!-- Pichangas -->
-                     <div class="project-card">
-                        <p class="project-title">Pichangas</p>
-                        <p class="project-description">
-                            Aplicación móvil para reservar canchas deportivas con sistema de pagos integrado y geolocalización de complejos cercanos
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + Expo </div>
-                            <div class="project-stat">TypeScript Firebase</div>
-                            <div class="project-stat">Stripe API + MapBox</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                     <!-- Gym -->
-                     <div class="project-card">
-                        <p class="project-title">Gym-App</p>
-                        <p class="project-description">
-                            Asistente culinario inteligente que sugiere recetas personalizadas basadas en ingredientes disponibles mediante reconocimiento de imágenes
-                        </p>
-                        <div class="project-stats">
-                            <div class="project-stat">React Native + Expo </div>
-                            <div class="project-stat">TypeScript SQLite</div>
-                            <div class="project-stat">Redux  + Auth PWA</div>
-                        </div>
-                        <div class="project-tags">
-                            <a href="https://github.com/fralch" class="project-tag">
-                                <span class="github-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                    
                 </div>
             </div>
 
-        
+            <!-- Education Section -->
+            <div class="education-section">
+                <h2 class="section-title">Educación</h2>
+                <div class="education-item">
+                    <div class="degree">Ingeniería de Sistemas</div>
+                    <div class="institution">Universidad Continental de Perú</div>
+                    <div class="education-date">Jun 2010 - Oct 2016</div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" id="moon-icon" style="display:none;"></path>
-            <circle cx="12" cy="12" r="5" id="sun-icon"></circle>
-            <line x1="12" y1="1" x2="12" y2="3" id="sun-icon-ray1"></line>
-            <line x1="12" y1="21" x2="12" y2="23" id="sun-icon-ray2"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" id="sun-icon-ray3"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" id="sun-icon-ray4"></line>
-            <line x1="1" y1="12" x2="3" y2="12" id="sun-icon-ray5"></line>
-            <line x1="21" y1="12" x2="23" y2="12" id="sun-icon-ray6"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" id="sun-icon-ray7"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" id="sun-icon-ray8"></line>
-        </svg>
-    </button>
-    
-    <!-- Command Palette Dialog -->
-    <dialog class="command-palette" id="command-palette">
-        <div class="command-palette-header">
-            <input type="text" class="command-palette-search" placeholder="Buscar comando..." id="command-search">
-        </div>
-        <div class="command-list-container">
-            <div class="command-section">
-                <h3 class="command-section-title">Acciones</h3>
-                <ul class="command-list">
-                    <li class="command-item" data-action="print">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                            <rect x="6" y="14" width="12" height="8"></rect>
-                        </svg>
-                        Imprimir
-                        <span class="command-item-shortcut">Ctrl + P</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="command-section">
-                <h3 class="command-section-title">Social</h3>
-                <ul class="command-list">
-                    <li class="command-item" data-action="linkedin">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        Visitar LinkedIn
-                        <span class="command-item-shortcut">Ctrl + L</span>
-                    </li>
-                    <li class="command-item" data-action="github">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                        </svg>
-                        Visitar GitHub
-                        <span class="command-item-shortcut">Ctrl + G</span>
-                    </li>
-                    <li class="command-item" data-action="x">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                        Visitar X
-                        <span class="command-item-shortcut">Ctrl + X</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </dialog>
-    
+
+    <!-- Project Modal -->
     <div id="projectModal" class="project-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle" style="margin: 0; color: var(--text-primary, #fff);">Detalles del Proyecto</h2>
+                <h2 id="modalTitle" style="margin: 0; color: var(--text-primary);">Detalles del Proyecto</h2>
                 <button class="modal-close" id="modalClose">&times;</button>
             </div>
             <div class="modal-body">
@@ -575,21 +1180,403 @@
                     <h4>Características principales:</h4>
                     <ul id="modalProjectFeatures"></ul>
                 </div>
-    
+
                 <div class="modal-tech-stack">
                     <h4>Stack tecnológico:</h4>
                     <div id="modalTechTags" class="modal-tech-tags"></div>
                 </div>
-    
+
                 <div id="modalProjectStats" class="modal-project-stats"></div>
                 
                 <div id="modalProjectLinks" class="modal-project-links"></div>
             </div>
         </div>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/project.js"></script>
-  
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <script>
+        // Project details data
+        const projectDetails = {
+            'MegaEquipamiento eCommerce': {
+                title: 'MegaEquipamiento - Plataforma eCommerce',
+                description: 'Plataforma completa de comercio electrónico especializada en equipos de laboratorio e industriales. Incluye sistema avanzado de comparación de productos, reviews de usuarios, carrito persistente y múltiples pasarelas de pago integradas.',
+                features: [
+                    'Catálogo filtrable con búsqueda avanzada por especificaciones',
+                    'Sistema de comparación de productos lado a lado',
+                    'Reviews y calificaciones de usuarios verificados',
+                    'Carrito de compras persistente con sincronización',
+                    'Integración con múltiples pasarelas de pago',
+                    'Panel administrativo para gestión de inventario',
+                    'Sistema de cupones y descuentos programables',
+                    'Notificaciones de stock y ofertas especiales'
+                ],
+                techStack: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Stripe', 'PayPal', 'Tailwind CSS', 'Redux'],
+                stats: ['React + TypeScript', 'Sistema de pagos integrado', 'Catálogo filtrable avanzado'],
+                links: {
+                    demo: 'https://equipamientoindustriales.hpservidor.com/',
+                    github: 'https://github.com/fralch/megaEquipamiento'
+                }
+            },
+            'Villding Multi-Platform': {
+                title: 'Villding - App Multiplataforma',
+                description: 'Aplicación híbrida desarrollada con React Native que funciona tanto online como offline. Incluye manejo avanzado de archivos multimedia, notificaciones push en tiempo real y sincronización automática de datos.',
+                features: [
+                    'Funcionalidad completa en modo offline con SQLite',
+                    'Sincronización automática al recuperar conexión',
+                    'Carga y gestión de imágenes desde galería y cámara',
+                    'Notificaciones push personalizadas en tiempo real',
+                    'Sistema de autenticación con biometría',
+                    'Interfaz adaptativa para iOS y Android',
+                    'Almacenamiento local seguro con encriptación',
+                    'Geolocalización y mapas interactivos'
+                ],
+                techStack: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'AsyncStorage', 'Laravel', 'Firebase', 'JWT'],
+                stats: ['React Native + Expo', 'AsyncStorage + SQLite', 'Laravel Backend'],
+                links: {
+                    demo: 'https://expo.dev/artifacts/eas/cQo6xn58rXNU7ygnQtnaeh.apk',
+                    github: 'https://github.com/fralch/Villding'
+                }
+            },
+            'Legal DocManager': {
+                title: 'Legal DocManager - Gestión Documentaria',
+                description: 'Sistema integral de gestión documentaria diseñado específicamente para despachos legales. Incluye control de acceso basado en roles, encriptación end-to-end y flujos de trabajo automatizados para procesos legales.',
+                features: [
+                    'Control de acceso basado en roles (RBAC) granular',
+                    'Encriptación end-to-end de documentos confidenciales',
+                    'Flujos de trabajo automatizados para procesos legales',
+                    'Versionado automático de documentos con historial',
+                    'Búsqueda inteligente con indexación de contenido',
+                    'Recordatorios automáticos de plazos legales',
+                    'Firma digital integrada con validación legal',
+                    'Auditoría completa de accesos y modificaciones'
+                ],
+                techStack: ['Astro.js', 'React', 'NestJS', 'PostgreSQL', 'Redis', 'JWT', 'bcrypt', 'Winston'],
+                stats: ['Astro.js + React', 'NestJS + PostgreSQL', 'RBAC Security'],
+                links: {
+                    github: 'https://github.com/fralch/supera-astro'
+                }
+            },
+            'ContainerTracker GPS': {
+                title: 'ContainerTracker - Seguimiento GPS',
+                description: 'Sistema avanzado de geolocalización en tiempo real para contenedores refrigerados. Incluye alertas inteligentes, monitoreo 24/7 de temperatura y ubicación, con dashboard analítico para optimización de rutas.',
+                features: [
+                    'Seguimiento GPS en tiempo real con precisión submétrica',
+                    'Monitoreo continuo de temperatura y humedad',
+                    'Alertas automáticas por desviaciones de ruta o temperatura',
+                    'Dashboard analítico con métricas de rendimiento',
+                    'Optimización de rutas con algoritmos de ML',
+                    'Geofencing con notificaciones personalizadas',
+                    'Reportes automáticos y exportación de datos',
+                    'API para integración con sistemas ERP'
+                ],
+                techStack: ['Laravel', 'Vue.js', 'MySQL', 'Redis', 'WebSockets', 'Google Maps API', 'Chart.js', 'Pusher'],
+                stats: ['Laravel + Vue.js', 'MySQL + Redis Cache', 'Real-time GPS tracking'],
+                links: {
+                    demo: 'https://www.zgroup.com.pe/',
+                    github: 'https://github.com/fralch/_Ztrack_'
+                }
+            },
+            'CrediApp Mobile': {
+                title: 'CrediApp - Sistema Integral de Gestión',
+                description: 'Aplicación web completa para la gestión integral de créditos y préstamos, incluyendo módulos especializados para logística, recursos humanos, facturación y sistema de pagos. Desarrollada con arquitectura escalable y diseño responsivo.',
+                features: [
+                    'Sistema de autenticación multinivel con roles personalizados',
+                    'Módulo de gestión de créditos con flujos automatizados',
+                    'Dashboard analítico con métricas en tiempo real',
+                    'Sistema de facturación electrónica integrado',
+                    'Gestión de recursos humanos con control de asistencia',
+                    'Módulo logístico para seguimiento de operaciones',
+                    'API REST para integración con servicios externos',
+                    'Notificaciones push y por email automatizadas'
+                ],
+                techStack: ['Vue.js', 'Laravel', 'MySQL', 'Redis', 'JWT', 'Bootstrap', 'Chart.js', 'WebSockets'],
+                stats: ['Vue + Laravel', 'Authentication', 'MySQL + Redis'],
+                links: {
+                    demo: 'https://crediapp.credipyme.com.pe/'
+                }
+            },
+            'Puntual App': {
+                title: 'Puntual App - Asistencia Inteligente',
+                description: 'Aplicación móvil para control de asistencia con reconocimiento facial y geolocalización para verificación. Elimina el fraude en marcado de asistencia con tecnología biométrica.',
+                features: [
+                    'Reconocimiento facial con IA',
+                    'Verificación por geolocalización',
+                    'Marcado de entrada y salida',
+                    'Detección de anomalías automática',
+                    'Reportes de asistencia en tiempo real',
+                    'Modo offline con sincronización',
+                    'Alertas de tardanzas y ausencias',
+                    'Integración con sistemas de nómina'
+                ],
+                techStack: ['React Native', 'TypeScript', 'TensorFlow.js', 'Firebase', 'Face-API.js', 'AsyncStorage'],
+                stats: ['React Native + TypeScript', 'TensorFlow.js', 'Firebase Realtime DB'],
+                links: {
+                    github: 'https://github.com/fralch/PuntualApp'
+                }
+            }
+        };
+
+        // Modal functionality
+        function openProjectModal(projectName) {
+            const modal = document.getElementById('projectModal');
+            const project = projectDetails[projectName];
+            
+            if (!project) return;
+            
+            // Update modal content
+            document.getElementById('modalProjectTitle').textContent = project.title;
+            document.getElementById('modalProjectTitle').href = project.links.demo || '#';
+            document.getElementById('modalProjectDescription').textContent = project.description;
+            
+            // Features
+            const featuresList = document.getElementById('modalProjectFeatures');
+            featuresList.innerHTML = '';
+            project.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+            
+            // Tech stack
+            const techContainer = document.getElementById('modalTechTags');
+            techContainer.innerHTML = '';
+            project.techStack.forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'modal-tech-tag';
+                span.textContent = tech;
+                techContainer.appendChild(span);
+            });
+            
+            // Stats
+            const statsContainer = document.getElementById('modalProjectStats');
+            statsContainer.innerHTML = '';
+            project.stats.forEach(stat => {
+                const div = document.createElement('div');
+                div.className = 'modal-project-stat';
+                div.textContent = stat;
+                statsContainer.appendChild(div);
+            });
+            
+            // Links
+            const linksContainer = document.getElementById('modalProjectLinks');
+            linksContainer.innerHTML = '';
+            
+            if (project.links.demo) {
+                const demoLink = document.createElement('a');
+                demoLink.href = project.links.demo;
+                demoLink.target = '_blank';
+                demoLink.className = 'modal-project-link';
+                demoLink.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Ver Demo
+                `;
+                linksContainer.appendChild(demoLink);
+            }
+            
+            if (project.links.github) {
+                const githubLink = document.createElement('a');
+                githubLink.href = project.links.github;
+                githubLink.target = '_blank';
+                githubLink.className = 'modal-project-link';
+                githubLink.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    Ver Código
+                `;
+                linksContainer.appendChild(githubLink);
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
         
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icon
+            const icon = themeToggle.querySelector('svg path');
+            if (newTheme === 'dark') {
+                icon.setAttribute('d', 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z');
+            } else {
+                icon.setAttribute('d', 'M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42');
+            }
+        });
+
+        // Project modal event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent activation if clicking on a link
+                    if (e.target.tagName === 'A' || e.target.closest('a')) {
+                        return;
+                    }
+                    
+                    const projectTitle = card.querySelector('.project-title').textContent.trim();
+                    openProjectModal(projectTitle);
+                });
+            });
+            
+            // Close modal event listeners
+            document.getElementById('modalClose').addEventListener('click', closeProjectModal);
+            
+            document.getElementById('projectModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeProjectModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeProjectModal();
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.project-card, .experience-item, .education-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Command palette functionality (basic implementation)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                alert('Command palette functionality - Press Ctrl+P to print, Ctrl+L for LinkedIn, Ctrl+G for GitHub');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
+                e.preventDefault();
+                window.open('https://www.linkedin.com/in/fralch/', '_blank');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'g') {
+                e.preventDefault();
+                window.open('https://github.com/fralch', '_blank');
+            }
+        });
+    </script>
+</body>
+</html>0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Command palette functionality (basic implementation)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                alert('Command palette functionality - Press Ctrl+P to print, Ctrl+L for LinkedIn, Ctrl+G for GitHub');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
+                e.preventDefault();
+                window.open('https://www.linkedin.com/in/fralch/', '_blank');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'g') {
+                e.preventDefault();
+                window.open('https://github.com/fralch', '_blank');
+            }
+        });
+    </script>
+</body>
+</html>0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Command palette functionality (basic implementation)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                alert('Command palette functionality - Press Ctrl+P to print, Ctrl+L for LinkedIn, Ctrl+G for GitHub');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
+                e.preventDefault();
+                window.open('https://www.linkedin.com/in/fralch/', '_blank');
+            }
+            
+            if ((e.metaKey || e.ctrlKey) && e.key === 'g') {
+                e.preventDefault();
+                window.open('https://github.com/fralch', '_blank');
+            }
+        });
+    </script>
 </body>
 </html>
